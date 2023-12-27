@@ -9,60 +9,111 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    // print(width);
+    // return Scaffold(
+    //   body: Align(
+    //     child: Container(
+    //       height: MediaQuery.of(context).size.height - 30,
+    //       width: 40,
+    //       color: Colors.red,
+    //     ),
+    //   ),
+    // );
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 600),
-            child: const Column(
-              children: [
-                // SizedBox(
-                //   height: 300,
-                //   child: Placeholder(
-                //     fallbackWidth: double.maxFinite,
-                //     color: Colors.purple,
-                //     child: Text('Header'),
-                //   ),
-                // ),
-                HeaderSection(),
-                SizedBox(height: 8),
-                WorkingWithMeAdvantages(),
-                ContactGridView(),
-                SizedBox(height: 8),
-                PackagesSection(),
-                SizedBox(height: 8),
-                ExperienceSection(),
-                // SizedBox(
-                //   height: 300,
-                //   child: Placeholder(
-                //     fallbackWidth: double.maxFinite,
-                //     color: Colors.red,
-                //     child: Text('Contact'),
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 1200,
-                //   child: Placeholder(
-                //     fallbackHeight: 1200,
-                //     fallbackWidth: double.maxFinite,
-                //     color: Colors.blueGrey,
-                //     child: Text('Previous Work'),
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 2000,
-                //   child: Placeholder(
-                //     fallbackHeight: 2000,
-                //     fallbackWidth: double.maxFinite,
-                //     color: Colors.brown,
-                //     child: Text('Projects'),
-                //   ),
-                // ),
-              ],
+      body: Builder(builder: (context) {
+        if (width > 1200) {
+          return const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                width: 600,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 8),
+                      PackagesSection(),
+                      SizedBox(height: 8),
+                      ExperienceSection(),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 600,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 8),
+                      ProfileImage(),
+                      SizedBox(height: 8),
+                      WorkingWithMeAdvantages(),
+                      ContactGridView(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          );
+        }
+
+        return Align(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              // clipBehavior: Clip.antiAlias,
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: 600,
+                color: Colors.red,
+                child: ListView(
+                  children: const [
+                    SizedBox(height: 8),
+                    ProfileImage(),
+                    SizedBox(height: 8),
+                    WorkingWithMeAdvantages(),
+                    ContactGridView(),
+                    SizedBox(height: 8),
+                    PackagesSection(),
+                    SizedBox(height: 8),
+                    ExperienceSection(),
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+        return Center(
+          child: LayoutBuilder(builder: (context, constraints) {
+            print(
+              'maxHeight: ${constraints.maxHeight} + ${MediaQuery.of(context).size.height}',
+            );
+            return FittedBox(
+              alignment: Alignment.topCenter,
+              fit: BoxFit.fitHeight,
+              child: SizedBox(
+                width: 600,
+                height: constraints.maxHeight,
+                // height: MediaQuery.of(context).size.height,
+                child: ListView(
+                  children: const [
+                    SizedBox(height: 8),
+                    ProfileImage(),
+                    SizedBox(height: 8),
+                    WorkingWithMeAdvantages(),
+                    ContactGridView(),
+                    SizedBox(height: 8),
+                    PackagesSection(),
+                    SizedBox(height: 8),
+                    ExperienceSection(),
+                  ],
+                ),
+              ),
+            );
+          }),
+        );
+      }),
     );
   }
 }

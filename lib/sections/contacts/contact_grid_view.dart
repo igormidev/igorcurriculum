@@ -23,33 +23,38 @@ class ContactGridView extends StatelessWidget {
             final List<Widget> items = [
               const ContactTile(
                 scale: 1.0,
-                url: 'https://cdn-icons-png.flaticon.com/512/732/732223.png',
+                imageUrl:
+                    'https://cdn-icons-png.flaticon.com/512/732/732223.png',
                 text: 'Outlook',
                 description: 'Text me\nan email',
+                url: 'mailto:igor9ms@outlook.com',
               ),
               const SizedBox(width: 16),
               const ContactTile(
                 scale: 0.9,
-                url:
+                imageUrl:
                     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
                 text: 'Github',
                 description: 'Check out my\nrepositories',
+                url: 'https://github.com/igormidev',
               ),
               const SizedBox(width: 16),
               const ContactTile(
                 scale: 1.5,
-                url: 'https://cdn-icons-png.flaticon.com/256/174/174857.png',
+                imageUrl:
+                    'https://cdn-icons-png.flaticon.com/256/174/174857.png',
                 text: 'LinkedIn',
                 description: 'Check out my\nprofile',
+                url: 'https://www.linkedin.com/in/igor-midev/',
               ),
               const SizedBox(width: 16),
               const ContactTile(
                 scale: 1.3,
-                url:
-                    // 'https://static-00.iconduck.com/assets.00/whatsapp-icon-2048x2048-rgp6kyqx.png',
+                imageUrl:
                     'https://cdn-icons-png.flaticon.com/512/3670/3670051.png',
                 text: 'WhatsApp',
                 description: 'Send me a\nmessage',
+                url: 'https://wa.me/5521967103488',
               )
             ];
             if (constraints.maxWidth <= 350) {
@@ -68,15 +73,17 @@ class ContactGridView extends StatelessWidget {
 
 class ContactTile extends StatelessWidget {
   final double scale;
-  final String url;
+  final String imageUrl;
   final String text;
   final String description;
+  final String url;
   const ContactTile({
     super.key,
     required this.scale,
-    required this.url,
+    required this.imageUrl,
     required this.text,
     required this.description,
+    required this.url,
   });
 
   @override
@@ -99,13 +106,14 @@ class ContactTile extends StatelessWidget {
                   vertical: 4,
                 ),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface,
+                  // color: Theme.of(context).colorScheme.surface,
+                  color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: Image.network(
-                    url,
+                    imageUrl,
                     fit: BoxFit.cover,
                   ),
                 ).animate(delay: 800.milliseconds).fadeIn(

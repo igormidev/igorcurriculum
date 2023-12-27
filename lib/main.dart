@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:igorcurriculum/profile_page.dart';
+import 'package:igorcurriculum/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +12,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: Builder(
+        builder: (context) {
+          print(
+            'mainor: ${MediaQuery.of(context).size.height}',
+          );
+          final state = context.watch<ThemeProvider>();
+          final scheme = ColorScheme.fromSeed(
+            seedColor: Color(state.colorValue),
+            brightness: state.brightness,
+          );
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              colorScheme: scheme,
+              useMaterial3: true,
+            ),
+            home: const ProfilePage(),
+          );
+        },
       ),
-      home: const ProfilePage(),
     );
   }
 }
