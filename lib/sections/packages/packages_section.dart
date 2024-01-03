@@ -11,19 +11,32 @@ class PackagesSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'My public packages',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-          ),
+        RichText(
+          text: TextSpan(children: [
+            TextSpan(
+              text: 'My public packages',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
+              ),
+            ),
+            TextSpan(
+              text: ' • Open source projects',
+              style: TextStyle(
+                fontWeight: FontWeight.normal,
+                fontSize: 23,
+                color: Theme.of(context).colorScheme.outline,
+              ),
+            ),
+          ]),
         ),
         Text(
           'In my flutter developer carrer I developed some open source packages projects. Bellow you can see some of them.',
           style: TextStyle(
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w300,
             color: Theme.of(context).colorScheme.outline,
-            fontSize: 17,
+            fontSize: 16,
           ),
         ),
         const SizedBox(height: 8),

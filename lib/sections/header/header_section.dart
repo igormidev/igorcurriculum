@@ -83,7 +83,7 @@ class _FiveStarWidgetState extends State<FiveStarWidget> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(4.seconds, () {
+    Future.delayed(6.seconds, () {
       _completer.complete();
     });
   }

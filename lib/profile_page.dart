@@ -3,6 +3,7 @@ import 'package:igorcurriculum/sections/contacts/contact_grid_view.dart';
 import 'package:igorcurriculum/sections/experience/experience_section.dart';
 import 'package:igorcurriculum/sections/header/header_section.dart';
 import 'package:igorcurriculum/sections/packages/packages_section.dart';
+import 'package:igorcurriculum/sections/source_code_card/source_code_card.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -33,8 +34,11 @@ class ProfilePage extends StatelessWidget {
                     children: [
                       SizedBox(height: 8),
                       PackagesSection(),
-                      SizedBox(height: 8),
+                      Divider(height: 32),
                       ExperienceSection(),
+                      Divider(height: 32),
+                      SourceCodeCard(),
+                      SizedBox(height: 20),
                     ],
                   ),
                 ),
@@ -78,40 +82,14 @@ class ProfilePage extends StatelessWidget {
                     PackagesSection(),
                     SizedBox(height: 8),
                     ExperienceSection(),
+                    SizedBox(height: 8),
+                    SourceCodeCard(),
+                    SizedBox(height: 20),
                   ],
                 ),
               ),
             ),
           ),
-        );
-        return Center(
-          child: LayoutBuilder(builder: (context, constraints) {
-            print(
-              'maxHeight: ${constraints.maxHeight} + ${MediaQuery.of(context).size.height}',
-            );
-            return FittedBox(
-              alignment: Alignment.topCenter,
-              fit: BoxFit.fitHeight,
-              child: SizedBox(
-                width: 600,
-                height: constraints.maxHeight,
-                // height: MediaQuery.of(context).size.height,
-                child: ListView(
-                  children: const [
-                    SizedBox(height: 8),
-                    ProfileImage(),
-                    SizedBox(height: 8),
-                    WorkingWithMeAdvantages(),
-                    ContactGridView(),
-                    SizedBox(height: 8),
-                    PackagesSection(),
-                    SizedBox(height: 8),
-                    ExperienceSection(),
-                  ],
-                ),
-              ),
-            );
-          }),
         );
       }),
     );
