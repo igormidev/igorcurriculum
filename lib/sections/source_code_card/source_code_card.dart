@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:igorcurriculum/sections/header/header_section.dart';
 import 'package:image_network/image_network.dart';
 
 class SourceCodeCard extends StatelessWidget {

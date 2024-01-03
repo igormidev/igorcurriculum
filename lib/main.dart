@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
             brightness: state.brightness,
           );
           return MaterialApp(
-            title: 'Flutter Demo',
+            title: 'Igor Curriculum',
             theme: ThemeData(
               colorScheme: scheme,
               useMaterial3: true,
