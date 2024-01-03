@@ -1,2 +1,1 @@
-# My personal curriculum website
-To demonstrate my career achievements, employment history, open source projects and other abilities, I created this website as a curriculum and also a little demonstration of my capabilities.
+# Repository used as reference to Github Pages site upload
