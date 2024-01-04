@@ -1,6 +1,11 @@
+import 'dart:math';
+
+import 'package:dart_debouncer/dart_debouncer.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:igorcurriculum/core/constants.dart';
 import 'package:igorcurriculum/services/analytics_service.dart';
+import 'package:igorcurriculum/shared/shimmer_build_delay_wrapper.dart';
 import 'package:image_network/image_network.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -12,32 +17,47 @@ class PackagesSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RichText(
-          text: TextSpan(children: [
-            TextSpan(
-              text: 'My public packages',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
+        ShimmerBuildDelayWrapper(
+          duration: Constants.myPublicPackagesHeaderDelay,
+          height: 30,
+          child: SizedBox(
+            height: 30,
+            child: RichText(
+              text: TextSpan(children: [
+                TextSpan(
+                  text: 'My public packages',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                ),
+                TextSpan(
+                  text: ' • Open source projects',
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 23,
+                    color: Theme.of(context).colorScheme.outline,
+                  ),
+                ),
+              ]),
             ),
-            TextSpan(
-              text: ' • Open source projects',
-              style: TextStyle(
-                fontWeight: FontWeight.normal,
-                fontSize: 23,
-                color: Theme.of(context).colorScheme.outline,
-              ),
-            ),
-          ]),
+          ),
         ),
-        Text(
-          'In my flutter developer carrer I developed some open source packages projects. Bellow you can see some of them.',
-          style: TextStyle(
-            fontWeight: FontWeight.w300,
-            color: Theme.of(context).colorScheme.outline,
-            fontSize: 16,
+        const SizedBox(height: 8),
+        ShimmerBuildDelayWrapper(
+          duration: Constants.myPublicPackagesSubtitleDelay,
+          height: 45,
+          child: SizedBox(
+            height: 45,
+            child: Text(
+              'In my flutter developer carrer I developed some open source packages projects. Bellow you can see some of them.',
+              style: TextStyle(
+                fontWeight: FontWeight.w300,
+                color: Theme.of(context).colorScheme.outline,
+                fontSize: 16,
+              ),
+            ),
           ),
         ),
         const SizedBox(height: 8),
@@ -204,146 +224,153 @@ class _ProjectsDemonstrationState extends State<ProjectsDemonstration> {
       color: Theme.of(context).colorScheme.outline,
       fontSize: 13,
     );
-    return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primaryContainer,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        AnalyticsService.instance
-                            .logOpenedPackage(widget.logName);
-                        launchUrl(Uri.parse(widget.linkUrl));
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color:
-                                  Theme.of(context).colorScheme.inversePrimary,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Text(
-                              widget.title,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
+    return ShimmerBuildDelayWrapper(
+      duration: Constants.packageCardDelay +
+          ((Random().nextInt(5) * 300).milliseconds),
+      height: 140,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primaryContainer,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          AnalyticsService.instance
+                              .logOpenedPackage(widget.logName);
+                          launchUrl(Uri.parse(widget.linkUrl));
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary,
+                                borderRadius: BorderRadius.circular(8),
                               ),
+                              child: Text(
+                                widget.title,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                            const Icon(Icons.open_in_new_rounded),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            if (showShortDescription) ...{
+                              TextSpan(
+                                text: widget.shortDescription,
+                                style: style,
+                              ),
+                              TextSpan(
+                                text: 'See more',
+                                style: style.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).colorScheme.primary,
+                                  decoration: TextDecoration.underline,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    setState(() {
+                                      showShortDescription = false;
+                                    });
+                                  },
+                              ),
+                            } else ...{
+                              TextSpan(
+                                text: widget.description,
+                                style: style,
+                              ),
+                              TextSpan(
+                                text: 'See less',
+                                style: style.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).colorScheme.primary,
+                                  decoration: TextDecoration.underline,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    setState(() {
+                                      showShortDescription = true;
+                                    });
+                                  },
+                              ),
+                            },
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                ImageNetwork(
+                  image: widget.imageUrl,
+                  height: widget.size?.height ?? 67,
+                  width: widget.size?.width ?? 120,
+                  fitWeb: BoxFitWeb.cover,
+                  onLoading: const CircularProgressIndicator.adaptive(),
+                ),
+              ],
+            ),
+            if (widget.liveDemoUrl != null) ...{
+              const SizedBox(height: 16),
+              InkWell(
+                onTap: () {
+                  launchUrl(Uri.parse(widget.liveDemoUrl!));
+                  if (widget.liveDemoLogName != null) {
+                    AnalyticsService.instance
+                        .logOpenedLiveDemo(widget.liveDemoLogName!);
+                  }
+                },
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color:
+                              Theme.of(context).colorScheme.tertiaryContainer,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: const Row(children: [
+                          Text(
+                            '  🌟 Test the live demo! ',
+                            // widget.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
                             ),
                           ),
-                          const Icon(Icons.open_in_new_rounded),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          if (showShortDescription) ...{
-                            TextSpan(
-                              text: widget.shortDescription,
-                              style: style,
-                            ),
-                            TextSpan(
-                              text: 'See more',
-                              style: style.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.primary,
-                                decoration: TextDecoration.underline,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  setState(() {
-                                    showShortDescription = false;
-                                  });
-                                },
-                            ),
-                          } else ...{
-                            TextSpan(
-                              text: widget.description,
-                              style: style,
-                            ),
-                            TextSpan(
-                              text: 'See less',
-                              style: style.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.primary,
-                                decoration: TextDecoration.underline,
-                              ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  setState(() {
-                                    showShortDescription = true;
-                                  });
-                                },
-                            ),
-                          },
-                        ],
+                          Spacer(),
+                          Icon(Icons.open_in_new_rounded),
+                          SizedBox(width: 8),
+                        ]),
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 8),
-              ImageNetwork(
-                image: widget.imageUrl,
-                height: widget.size?.height ?? 67,
-                width: widget.size?.width ?? 120,
-                fitWeb: BoxFitWeb.cover,
-                onLoading: const CircularProgressIndicator.adaptive(),
-              ),
-            ],
-          ),
-          if (widget.liveDemoUrl != null) ...{
-            const SizedBox(height: 16),
-            InkWell(
-              onTap: () {
-                launchUrl(Uri.parse(widget.liveDemoUrl!));
-                if (widget.liveDemoLogName != null) {
-                  AnalyticsService.instance
-                      .logOpenedLiveDemo(widget.liveDemoLogName!);
-                }
-              },
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.tertiaryContainer,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: const Row(children: [
-                        Text(
-                          '  🌟 Test the live demo! ',
-                          // widget.title,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                        Spacer(),
-                        Icon(Icons.open_in_new_rounded),
-                        SizedBox(width: 8),
-                      ]),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          }
-        ],
+            }
+          ],
+        ),
       ),
     );
   }

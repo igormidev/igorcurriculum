@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:igorcurriculum/core/constants.dart';
 import 'package:igorcurriculum/sections/contact_grid_view.dart';
 import 'package:igorcurriculum/sections/experience_section.dart';
 import 'package:igorcurriculum/sections/header_section.dart';
 import 'package:igorcurriculum/sections/packages_section.dart';
 import 'package:igorcurriculum/sections/source_code_card.dart';
+import 'package:igorcurriculum/shared/shimmer_build_delay_wrapper.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -11,48 +13,56 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    // print(width);
-    // return Scaffold(
-    //   body: Align(
-    //     child: Container(
-    //       height: MediaQuery.of(context).size.height - 30,
-    //       width: 40,
-    //       color: Colors.red,
-    //     ),
-    //   ),
-    // );
+
     return Scaffold(
       body: Builder(builder: (context) {
+        Constants.isMobileSize = false;
         if (width > 1200) {
-          return const Row(
+          const packagesExperienceSection = [
+            SizedBox(height: 8),
+            PackagesSection(),
+            Divider(height: 32),
+            ExperienceSection(),
+            Divider(height: 32),
+            SourceCodeCard(),
+            SizedBox(height: 20),
+          ];
+
+          return Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                width: 600,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 8),
-                      PackagesSection(),
-                      Divider(height: 32),
-                      ExperienceSection(),
-                      Divider(height: 32),
-                      SourceCodeCard(),
-                      SizedBox(height: 20),
-                    ],
-                  ),
+                width: Constants.screenWidth,
+                child: ListView.builder(
+                  itemCount: packagesExperienceSection.length,
+                  itemBuilder: (context, index) {
+                    return packagesExperienceSection[index];
+                  },
                 ),
               ),
               SizedBox(
-                width: 600,
+                width: Constants.screenWidth,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      SizedBox(height: 8),
-                      ProfileImage(),
-                      SizedBox(height: 8),
-                      WorkingWithMeAdvantages(),
-                      ContactGridView(),
+                      const SizedBox(height: 8),
+                      ShimmerBuildDelayWrapper(
+                        duration: Constants.profileHeaderDelay,
+                        height: 260,
+                        child: const ProfileImage(),
+                      ),
+                      const SizedBox(height: 8),
+                      ShimmerBuildDelayWrapper(
+                        duration: Constants.howIcanHelpYouDelay,
+                        height: 370,
+                        child: const WorkingWithMeAdvantages(),
+                      ),
+                      const SizedBox(height: 8),
+                      ShimmerBuildDelayWrapper(
+                        duration: Constants.contactGrid,
+                        height: 154,
+                        child: const ContactGridView(),
+                      ),
                     ],
                   ),
                 ),
@@ -61,36 +71,45 @@ class ProfilePage extends StatelessWidget {
           );
         }
 
-        return Align(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: FittedBox(
-              fit: BoxFit.fitWidth,
-              // clipBehavior: Clip.antiAlias,
-              child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: 600,
-                color: Colors.red,
-                child: ListView(
-                  children: const [
-                    SizedBox(height: 8),
-                    ProfileImage(),
-                    SizedBox(height: 8),
-                    WorkingWithMeAdvantages(),
-                    ContactGridView(),
-                    SizedBox(height: 8),
-                    PackagesSection(),
-                    SizedBox(height: 8),
-                    ExperienceSection(),
-                    SizedBox(height: 8),
-                    SourceCodeCard(),
-                    SizedBox(height: 20),
-                  ],
+        return Builder(builder: (context) {
+          Constants.isMobileSize = true;
+
+          final widgets = [
+            const SizedBox(height: 8),
+            const ProfileImage(),
+            const SizedBox(height: 8),
+            const WorkingWithMeAdvantages(),
+            const SizedBox(height: 8),
+            const ContactGridView(),
+            const SizedBox(height: 8),
+            const PackagesSection(),
+            const SizedBox(height: 8),
+            const ExperienceSection(),
+            const SizedBox(height: 8),
+            const SourceCodeCard(),
+            const SizedBox(height: 20),
+          ];
+          return Align(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: FittedBox(
+                fit: BoxFit.fitWidth,
+                // clipBehavior: Clip.antiAlias,
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: 600,
+                  // color: Colors.red,
+                  child: ListView.builder(
+                    itemCount: widgets.length,
+                    itemBuilder: (context, index) {
+                      return widgets[index];
+                    },
+                  ),
                 ),
               ),
             ),
-          ),
-        );
+          );
+        });
       }),
     );
   }

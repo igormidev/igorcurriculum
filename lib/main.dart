@@ -16,9 +16,6 @@ class MyApp extends StatelessWidget {
       create: (_) => ThemeProvider(),
       child: Builder(
         builder: (context) {
-          print(
-            'mainor: ${MediaQuery.of(context).size.height}',
-          );
           final state = context.watch<ThemeProvider>();
           final scheme = ColorScheme.fromSeed(
             seedColor: Color(state.colorValue),

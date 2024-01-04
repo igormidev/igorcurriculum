@@ -14,109 +14,103 @@ class ContactGridView extends StatefulWidget {
 class _ContactGridViewState extends State<ContactGridView> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 8),
-        LayoutBuilder(
-          builder: (context, constraints) {
-            final List<Widget> items = [
-              const ContactTile(
-                scale: 1.0,
-                imageUrl:
-                    'https://cdn-icons-png.flaticon.com/512/732/732223.png',
-                text: 'Outlook',
-                description: 'Text me\nan email',
-                url: 'mailto:igor9ms@outlook.com',
-              ),
-              const SizedBox(width: 4),
-              const ContactTile(
-                scale: 0.9,
-                imageUrl:
-                    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
-                text: 'Github',
-                description: 'Check out my\nrepositories',
-                url: 'https://github.com/igormidev',
-              ),
-              const SizedBox(width: 4),
-              const ContactTile(
-                scale: 1.5,
-                imageUrl:
-                    'https://cdn-icons-png.flaticon.com/256/174/174857.png',
-                text: 'LinkedIn',
-                description: 'Check out my\nprofile',
-                url: 'https://www.linkedin.com/in/igor-midev/',
-              ),
-              const SizedBox(width: 4),
-              const ContactTile(
-                scale: 1.3,
-                imageUrl:
-                    'https://cdn-icons-png.flaticon.com/512/3670/3670051.png',
-                text: 'WhatsApp',
-                description: 'Send me a\nmessage\n+55 (21) 9 6710-3488',
-                url: 'https://wa.me/5521967103488',
-              )
-            ];
-            if (constraints.maxWidth <= 350) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: items,
-              );
-            } else {
-              return const Column(
-                children: [
-                  Row(
-                    children: [
-                      ContactTile(
-                        scale: 1.0,
-                        imageUrl:
-                            'https://cdn-icons-png.flaticon.com/512/732/732223.png',
-                        text: 'Outlook',
-                        description:
-                            'Text me an email\nigor-devwork@outlook.com',
-                        url: 'mailto:igor-devwork@outlook.com',
-                      ),
-                      SizedBox(width: 16),
-                      ContactTile(
-                        scale: 0.9,
-                        imageUrl:
-                            'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
-                        text: 'Github',
-                        description:
-                            'Check out my repositories\nhttps://github.com/igormidev',
-                        url: 'https://github.com/igormidev',
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    children: [
-                      ContactTile(
-                        scale: 1.5,
-                        imageUrl:
-                            'https://cdn-icons-png.flaticon.com/256/174/174857.png',
-                        text: 'LinkedIn',
-                        description:
-                            'Check out my profile\nlinkedin.com/in/igor-midev',
-                        url: 'https://www.linkedin.com/in/igor-midev/',
-                      ),
-                      SizedBox(width: 16),
-                      ContactTile(
-                        scale: 1.3,
-                        imageUrl:
-                            'https://cdn-icons-png.flaticon.com/512/3670/3670051.png',
-                        text: 'WhatsApp',
-                        description: 'Send me a message\n+55 (21) 9 6710-3488',
-                        url: 'https://wa.me/5521967103488',
-                      ),
-                    ],
-                  ),
-                ],
-              );
-            }
-          },
-        ),
-      ],
+    return SizedBox(
+      height: 154,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final List<Widget> items = [
+            const ContactTile(
+              scale: 1.0,
+              imageUrl: 'https://cdn-icons-png.flaticon.com/512/732/732223.png',
+              text: 'Outlook',
+              description: 'Text me\nan email',
+              url: 'mailto:igor9ms@outlook.com',
+            ),
+            const SizedBox(width: 4),
+            const ContactTile(
+              scale: 0.9,
+              imageUrl:
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
+              text: 'Github',
+              description: 'Check out my\nrepositories',
+              url: 'https://github.com/igormidev',
+            ),
+            const SizedBox(width: 4),
+            const ContactTile(
+              scale: 1.5,
+              imageUrl: 'https://cdn-icons-png.flaticon.com/256/174/174857.png',
+              text: 'LinkedIn',
+              description: 'Check out my\nprofile',
+              url: 'https://www.linkedin.com/in/igor-midev/',
+            ),
+            const SizedBox(width: 4),
+            const ContactTile(
+              scale: 1.3,
+              imageUrl:
+                  'https://cdn-icons-png.flaticon.com/512/3670/3670051.png',
+              text: 'WhatsApp',
+              description: 'Send me a\nmessage\n+55 (21) 9 6710-3488',
+              url: 'https://wa.me/5521967103488',
+            )
+          ];
+          if (constraints.maxWidth <= 350) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: items,
+            );
+          } else {
+            return const Column(
+              children: [
+                Row(
+                  children: [
+                    ContactTile(
+                      scale: 1.0,
+                      imageUrl:
+                          'https://cdn-icons-png.flaticon.com/512/732/732223.png',
+                      text: 'Outlook',
+                      description: 'Text me an email\nigor-devwork@outlook.com',
+                      url: 'mailto:igor-devwork@outlook.com',
+                    ),
+                    SizedBox(width: 16),
+                    ContactTile(
+                      scale: 0.9,
+                      imageUrl:
+                          'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
+                      text: 'Github',
+                      description:
+                          'Check out my repositories\nhttps://github.com/igormidev',
+                      url: 'https://github.com/igormidev',
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8),
+                Row(
+                  children: [
+                    ContactTile(
+                      scale: 1.5,
+                      imageUrl:
+                          'https://cdn-icons-png.flaticon.com/256/174/174857.png',
+                      text: 'LinkedIn',
+                      description:
+                          'Check out my profile\nlinkedin.com/in/igor-midev',
+                      url: 'https://www.linkedin.com/in/igor-midev/',
+                    ),
+                    SizedBox(width: 16),
+                    ContactTile(
+                      scale: 1.3,
+                      imageUrl:
+                          'https://cdn-icons-png.flaticon.com/512/3670/3670051.png',
+                      text: 'WhatsApp',
+                      description: 'Send me a message\n+55 (21) 9 6710-3488',
+                      url: 'https://wa.me/5521967103488',
+                    ),
+                  ],
+                ),
+              ],
+            );
+          }
+        },
+      ),
     );
   }
 }

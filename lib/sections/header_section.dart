@@ -409,6 +409,7 @@ class WorkingWithMeAdvantages extends StatelessWidget {
         color: Theme.of(context).colorScheme.surfaceVariant.withAlpha(100),
         borderRadius: BorderRadius.circular(8),
       ),
+      height: 370,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       child: Column(
         children: [
