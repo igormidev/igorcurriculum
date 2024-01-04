@@ -89,25 +89,11 @@ class ProfilePage extends StatelessWidget {
             const SourceCodeCard(),
             const SizedBox(height: 20),
           ];
-          return Align(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: FittedBox(
-                fit: BoxFit.fitWidth,
-                // clipBehavior: Clip.antiAlias,
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  width: 600,
-                  // color: Colors.red,
-                  child: ListView.builder(
-                    itemCount: widgets.length,
-                    itemBuilder: (context, index) {
-                      return widgets[index];
-                    },
-                  ),
-                ),
-              ),
-            ),
+          return ListView.builder(
+            itemCount: widgets.length,
+            itemBuilder: (context, index) {
+              return widgets[index];
+            },
           );
         });
       }),
