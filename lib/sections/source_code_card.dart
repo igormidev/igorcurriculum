@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:igorcurriculum/services/analytics_service.dart';
 import 'package:image_network/image_network.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SourceCodeCard extends StatelessWidget {
   const SourceCodeCard({super.key});
@@ -7,7 +9,10 @@ class SourceCodeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        launchUrl(Uri.parse('https://github.com/igormidev/igorcurriculum'));
+        AnalyticsService.instance.openedSiteRepository();
+      },
       child: Container(
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,

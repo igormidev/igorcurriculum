@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:igorcurriculum/services/analytics_service.dart';
 import 'package:image_network/image_network.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -42,6 +43,7 @@ class PackagesSection extends StatelessWidget {
         const SizedBox(height: 8),
         const ProjectsDemonstration(
           title: ' 📦 Dart Package - Debouncer  ',
+          logName: 'dart_debouncer',
           linkUrl: 'https://pub.dev/packages/dart_debouncer',
           shortDescription:
               '''💡 A package for creating debounce in dart will possibilities of multi instances debounce
@@ -55,6 +57,7 @@ class PackagesSection extends StatelessWidget {
         const SizedBox(height: 8),
         const ProjectsDemonstration(
           title: ' 📦 Dart Package - Enchanted Collection toolkit ',
+          logName: 'enchanted_collection',
           linkUrl: 'https://pub.dev/packages/enchanted_collection',
           shortDescription:
               '''💡 A collection toolkit of useful data structures and algorithms for collections.
@@ -88,6 +91,7 @@ Cast functions
         const SizedBox(height: 8),
         const ProjectsDemonstration(
           title: ' 📦 Dart Package - Enchanted Regex  ',
+          logName: 'enchanted_regex',
           linkUrl: 'https://pub.dev/packages/enchanted_regex',
           shortDescription:
               '''💡A package that enhances dart regex api. Mainly when working with named group's.\n
@@ -102,6 +106,7 @@ Cast functions
         const SizedBox(height: 8),
         const ProjectsDemonstration(
           title: ' 📦 Dart Package - Sandbox logger  ',
+          logName: 'sandbox_logger',
           linkUrl: 'https://pub.dev/packages/sandbox_logger',
           shortDescription:
               '''💡 A simple tool for more beautiful and colorful console prints.  
@@ -123,6 +128,7 @@ Cast functions
         const SizedBox(height: 8),
         const ProjectsDemonstration(
           title: ' 📦 Flutter Package -  YT shorts display package  ',
+          logName: 'youtube_shorts',
           linkUrl: 'https://pub.dev/packages/youtube_shorts',
           shortDescription:
               '''💡A package for displaying vertical youtube shorts.
@@ -138,6 +144,7 @@ Cast functions
         const SizedBox(height: 8),
         const ProjectsDemonstration(
           title: ' 📦 Flutter Package - Field autocomplete  ',
+          logName: 'autocomplete_textfield',
           linkUrl: 'https://pub.dev/packages/cursor_autocomplete_options',
           shortDescription:
               '''💡Autocomplete dialog in textfield for desktop applications
@@ -152,6 +159,7 @@ Cast functions
           size: Size(130, 100),
           liveDemoUrl:
               'https://igormidev.github.io/cursor_autocomplete_options/',
+          liveDemoLogName: 'autocomplete_textfield',
         ),
       ],
     );
@@ -165,7 +173,9 @@ class ProjectsDemonstration extends StatefulWidget {
   final String imageUrl;
   final String linkUrl;
   final Size? size;
+  final String? liveDemoLogName;
   final String? liveDemoUrl;
+  final String logName;
 
   const ProjectsDemonstration({
     super.key,
@@ -174,8 +184,10 @@ class ProjectsDemonstration extends StatefulWidget {
     required this.shortDescription,
     required this.imageUrl,
     required this.linkUrl,
+    required this.logName,
     this.size,
     this.liveDemoUrl,
+    this.liveDemoLogName,
   });
 
   @override
@@ -209,6 +221,8 @@ class _ProjectsDemonstrationState extends State<ProjectsDemonstration> {
                   children: [
                     InkWell(
                       onTap: () {
+                        AnalyticsService.instance
+                            .logOpenedPackage(widget.logName);
                         launchUrl(Uri.parse(widget.linkUrl));
                       },
                       child: Row(
@@ -296,6 +310,10 @@ class _ProjectsDemonstrationState extends State<ProjectsDemonstration> {
             InkWell(
               onTap: () {
                 launchUrl(Uri.parse(widget.liveDemoUrl!));
+                if (widget.liveDemoLogName != null) {
+                  AnalyticsService.instance
+                      .logOpenedLiveDemo(widget.liveDemoLogName!);
+                }
               },
               child: Row(
                 children: [

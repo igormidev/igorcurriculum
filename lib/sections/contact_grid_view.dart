@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:igorcurriculum/services/analytics_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactGridView extends StatefulWidget {
@@ -139,7 +140,10 @@ class ContactTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        onTap: () => launchUrl(Uri.parse(url)),
+        onTap: () {
+          launchUrl(Uri.parse(url));
+          AnalyticsService.instance.logContact(text.toLowerCase());
+        },
         child: Container(
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,

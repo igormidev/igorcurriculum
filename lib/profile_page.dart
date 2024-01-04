@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:igorcurriculum/sections/contacts/contact_grid_view.dart';
-import 'package:igorcurriculum/sections/experience/experience_section.dart';
-import 'package:igorcurriculum/sections/header/header_section.dart';
-import 'package:igorcurriculum/sections/packages/packages_section.dart';
-import 'package:igorcurriculum/sections/source_code_card/source_code_card.dart';
+import 'package:igorcurriculum/sections/contact_grid_view.dart';
+import 'package:igorcurriculum/sections/experience_section.dart';
+import 'package:igorcurriculum/sections/header_section.dart';
+import 'package:igorcurriculum/sections/packages_section.dart';
+import 'package:igorcurriculum/sections/source_code_card.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
