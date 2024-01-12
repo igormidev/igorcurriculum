@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -306,6 +305,7 @@ class ProfileImage extends StatelessWidget {
               margin: const EdgeInsets.only(right: width + 16),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Row(
                     children: [
@@ -320,8 +320,19 @@ class ProfileImage extends StatelessWidget {
                     ],
                   ),
                   const Divider(),
+                  InkWell(
+                    onTap: () {},
+                    child: Text(
+                      '✅ Upwork top rated freelancer with 100% success rate (best 5% of platform)',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Theme.of(context).colorScheme.outline,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
                   Text(
-                    '✅ Upwork top rated freelancer with 100% success rate (best 5% of platform)\n✅ Client experience is my number 1 priority',
+                    '✅ Client experience is my number 1 priority',
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).colorScheme.outline,
@@ -415,8 +426,6 @@ class WorkingWithMeAdvantages extends StatelessWidget {
         children: [
           Text(
             'How can i help you?',
-            // '𝐇𝐨𝐰 𝐜𝐚𝐧 𝐈 𝐡𝐞𝐥𝐩 𝐲𝐨𝐮?',
-            // style: Theme.of(context).textTheme.displaySmall,
             style: GoogleFonts.italiana(
               fontWeight: FontWeight.w900,
               fontSize: 28,
@@ -425,8 +434,6 @@ class WorkingWithMeAdvantages extends StatelessWidget {
           ),
           Text(
             'Working with me, you will:',
-            // '𝘞𝘰𝘳𝘬𝘪𝘯𝘨 𝘸𝘪𝘵𝘩 𝘮𝘦, 𝘺𝘰𝘶 𝘸𝘪𝘭𝘭:',
-            // style: Theme.of(context).textTheme.bodyLarge,
             style: GoogleFonts.inter(
               fontWeight: FontWeight.w500,
               fontSize: 15,

@@ -16,7 +16,6 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       body: Builder(builder: (context) {
-        Constants.isMobileSize = false;
         if (width > 1200) {
           const packagesExperienceSection = [
             SizedBox(height: 8),
@@ -72,8 +71,6 @@ class ProfilePage extends StatelessWidget {
         }
 
         return Builder(builder: (context) {
-          Constants.isMobileSize = true;
-
           final widgets = [
             const SizedBox(height: 8),
             const ProfileImage(),
@@ -90,6 +87,7 @@ class ProfilePage extends StatelessWidget {
             const SizedBox(height: 20),
           ];
           return ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: widgets.length,
             itemBuilder: (context, index) {
               return widgets[index];

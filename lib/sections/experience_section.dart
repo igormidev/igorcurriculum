@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:igorcurriculum/core/constants.dart';
 import 'package:igorcurriculum/shared/shimmer_build_delay_wrapper.dart';
 import 'package:image_network/image_network.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ExperienceSection extends StatelessWidget {
   const ExperienceSection({super.key});
@@ -69,6 +70,7 @@ class ExperienceSection extends StatelessWidget {
 📈 Meteoric rise
 With a lot of struggle and determination, I quickly went from being an amateur freelancer on the site to earning the "talent in accession" badge and recently being awarded the "top rated" freelancer badge. This way, I position myself among the top 5% of freelancers on the site.''',
           workPeriodText: 'march 2023 - present',
+          link: 'https://www.upwork.com/freelancers/igormidev',
         ),
         const SizedBox(height: 8),
         const ExperienceTile(
@@ -94,6 +96,8 @@ In this application, among other things, I've done:
  𝘐𝘯𝘤𝘭𝘶𝘴𝘪𝘷𝘦 𝘐 𝘤𝘳𝘦𝘢𝘵𝘦𝘥 𝘢 𝘱𝘢𝘤𝘬𝘢𝘨𝘦 𝘵𝘰 𝘦𝘯𝘤𝘢𝘱𝘴𝘶𝘭𝘦 𝘵𝘩𝘪𝘴 𝘭𝘰𝘨𝘪𝘤:
  𝘩𝘵𝘵𝘱𝘴://𝘱𝘶𝘣.𝘥𝘦𝘷/𝘱𝘢𝘤𝘬𝘢𝘨𝘦𝘴/𝘺𝘰𝘶𝘵𝘶𝘣𝘦_𝘴𝘩𝘰𝘳𝘵𝘴''',
           workPeriodText: 'april 2023 - present',
+          link:
+              'https://play.google.com/store/apps/details?id=dreamstock.com.dreamstock&hl=pt_BR&gl=US',
         ),
         const SizedBox(height: 8),
         const ExperienceTile(
@@ -108,6 +112,8 @@ In this application, among other things, I've done:
 
 📹 Also, I implemented video/chat with health providers features.''',
           workPeriodText: 'april 2023 - dezember 2023',
+          link:
+              'https://play.google.com/store/apps/details?id=br.com.alineahealth.app&hl=pt&gl=US',
         ),
         const SizedBox(height: 8),
         const ExperienceTile(
@@ -120,6 +126,8 @@ In this application, among other things, I've done:
 
 💪 With that strong code base, me and my team delivered high value to the final by producing apps that not only look great, but also runs smoothly, without bugs.''',
           workPeriodText: 'february 2022 - april 2023 (1 year 3 months)',
+          link:
+              'https://apps.apple.com/br/app/target-conta-digital/id1590916424?l=en',
         ),
         const SizedBox(height: 8),
         const ExperienceTile(
@@ -133,6 +141,8 @@ In this application, among other things, I've done:
 
 💪 With a strong code base, me and my team delivered high value to the final by producing apps that not only look great, but also runs smoothly, without bugs.''',
           workPeriodText: 'february 2022 - april 2023 (1 year 3 months)',
+          link:
+              'https://play.google.com/store/apps/details?id=br.com.targetmp.cartaofrota&hl=pt_BR&gl=US',
         ),
       ],
     );
@@ -144,12 +154,14 @@ class ExperienceTile extends StatelessWidget {
   final String title;
   final String description;
   final String workPeriodText;
+  final String link;
   const ExperienceTile({
     super.key,
     required this.imageUrl,
     required this.title,
     required this.description,
     required this.workPeriodText,
+    required this.link,
   });
 
   @override
@@ -176,26 +188,37 @@ class ExperienceTile extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+              child: Stack(
+                alignment: Alignment.topRight,
                 children: [
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleMedium,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        title,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      // const SizedBox(height: 8),
+                      Text(
+                        workPeriodText,
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .outline
+                                  .withAlpha(190),
+                            ),
+                      ),
+                      const SizedBox(height: 8),
+                      SelectableText(description),
+                    ],
                   ),
-                  // const SizedBox(height: 8),
-                  Text(
-                    workPeriodText,
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .outline
-                              .withAlpha(190),
-                        ),
+                  IconButton(
+                    onPressed: () {
+                      launchUrl(Uri.parse(link));
+                    },
+                    icon: const Icon(Icons.open_in_browser_rounded),
                   ),
-                  const SizedBox(height: 8),
-                  SelectableText(description),
                 ],
               ),
             ),

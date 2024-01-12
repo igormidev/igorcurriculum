@@ -29,20 +29,20 @@ class MyApp extends StatelessWidget {
               colorScheme: scheme,
               useMaterial3: true,
             ),
-            builder: (context, child) {
-              if (Constants().isMobile == false) {
-                return child!;
-              } else {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: ResponsiveScaledBox(
-                    width: 600,
-                    child: child!,
-                  ),
-                );
-              }
-            },
-            home: const ProfilePage(),
+            home: LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth > Constants.screenWidth) {
+                  Constants.isMobileSize = false;
+                  return const ProfilePage();
+                } else {
+                  Constants.isMobileSize = true;
+                  return const ResponsiveScaledBox(
+                    width: 636,
+                    child: ProfilePage(),
+                  );
+                }
+              },
+            ),
           );
         },
       ),

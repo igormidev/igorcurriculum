@@ -105,7 +105,7 @@ Cast functions
  ⦿ Transform a map into a list
  ⦿ Cast object/dynamic to desired type  ''',
           imageUrl:
-              'https://pub.dev/packages/enchanted_collection/versions/1.1.2/gen-res/gen/logo_image.webp',
+              'https://github.com/igormidev/enchanted_collection/blob/master/art/logo_image.png?raw=true',
           size: Size(100, 100),
         ),
         const SizedBox(height: 8),
