@@ -86,12 +86,46 @@ class ProfilePage extends StatelessWidget {
             const SourceCodeCard(),
             const SizedBox(height: 20),
           ];
-          return ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            itemCount: widgets.length,
-            itemBuilder: (context, index) {
-              return widgets[index];
-            },
+
+          final widgetsnew = <Widget>[
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 8),
+            ),
+            const SliverToBoxAdapter(
+              child: ProfileImage(),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 8),
+            ),
+            const SliverToBoxAdapter(
+              child: WorkingWithMeAdvantages(),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 8),
+            ),
+            const SliverToBoxAdapter(
+              child: ContactGridView(),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 8),
+            ),
+            const PackagesSection(),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 8),
+            ),
+            const ExperienceSection(),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 8),
+            ),
+            const SliverToBoxAdapter(
+              child: SourceCodeCard(),
+            ),
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 20),
+            ),
+          ];
+          return CustomScrollView(
+            slivers: widgetsnew,
           );
         });
       }),
