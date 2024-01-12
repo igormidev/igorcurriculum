@@ -6,6 +6,7 @@ import 'package:igorcurriculum/theme_provider.dart';
 import 'package:image_network/image_network.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ChangeLightModeWidget extends StatefulWidget {
   const ChangeLightModeWidget({super.key});
@@ -321,7 +322,13 @@ class ProfileImage extends StatelessWidget {
                   ),
                   const Divider(),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      launchUrl(
+                        Uri.parse(
+                          'https://www.upwork.com/freelancers/igormidev',
+                        ),
+                      );
+                    },
                     child: Text(
                       '✅ Upwork top rated freelancer with 100% success rate (best 5% of platform)',
                       style: TextStyle(
