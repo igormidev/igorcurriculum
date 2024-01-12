@@ -4,14 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:igorcurriculum/services/analytics_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ContactGridView extends StatefulWidget {
+class ContactGridView extends StatelessWidget {
   const ContactGridView({super.key});
 
-  @override
-  State<ContactGridView> createState() => _ContactGridViewState();
-}
-
-class _ContactGridViewState extends State<ContactGridView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(

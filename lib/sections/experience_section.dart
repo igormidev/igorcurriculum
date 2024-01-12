@@ -1,9 +1,4 @@
-import 'dart:math';
-
-import 'package:dart_debouncer/dart_debouncer.dart';
 import 'package:flutter/material.dart';
-import 'package:igorcurriculum/core/constants.dart';
-import 'package:igorcurriculum/shared/shimmer_build_delay_wrapper.dart';
 import 'package:image_network/image_network.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,46 +10,38 @@ class ExperienceSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ShimmerBuildDelayWrapper(
-          duration: Constants.myExperiencePackagesHeaderDelay,
+        SizedBox(
           height: 30,
-          child: SizedBox(
-            height: 30,
-            child: RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                  text: 'Experience',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  ),
+          child: RichText(
+            text: TextSpan(children: [
+              TextSpan(
+                text: 'Experience',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
-                TextSpan(
-                  text: ' • Employment history',
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 23,
-                    color: Theme.of(context).colorScheme.outline,
-                  ),
+              ),
+              TextSpan(
+                text: ' • Employment history',
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 23,
+                  color: Theme.of(context).colorScheme.outline,
                 ),
-              ]),
-            ),
+              ),
+            ]),
           ),
         ),
         const SizedBox(height: 8),
-        ShimmerBuildDelayWrapper(
-          duration: Constants.myExperienceagesSubtitleDelay,
+        SizedBox(
           height: 26,
-          child: SizedBox(
-            height: 26,
-            child: Text(
-              'My relevant experiences working with flutter.',
-              style: TextStyle(
-                fontWeight: FontWeight.w300,
-                color: Theme.of(context).colorScheme.outline,
-                fontSize: 16,
-              ),
+          child: Text(
+            'My relevant experiences working with flutter.',
+            style: TextStyle(
+              fontWeight: FontWeight.w300,
+              color: Theme.of(context).colorScheme.outline,
+              fontSize: 16,
             ),
           ),
         ),
@@ -166,64 +153,59 @@ class ExperienceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShimmerBuildDelayWrapper(
-      duration: Constants.experienceCardDelay +
-          (Random().nextInt(5) * 1200).milliseconds,
-      height: 220,
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceVariant.withAlpha(100),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ImageNetwork(
-              image: imageUrl,
-              height: 64,
-              width: 64,
-              fitWeb: BoxFitWeb.cover,
-              onLoading: const CircularProgressIndicator.adaptive(),
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceVariant.withAlpha(100),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ImageNetwork(
+            image: imageUrl,
+            height: 64,
+            width: 64,
+            fitWeb: BoxFitWeb.cover,
+            onLoading: const CircularProgressIndicator.adaptive(),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Stack(
+              alignment: Alignment.topRight,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    // const SizedBox(height: 8),
+                    Text(
+                      workPeriodText,
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .outline
+                                .withAlpha(190),
+                          ),
+                    ),
+                    const SizedBox(height: 8),
+                    SelectableText(description),
+                  ],
+                ),
+                IconButton(
+                  onPressed: () {
+                    launchUrl(Uri.parse(link));
+                  },
+                  icon: const Icon(Icons.open_in_browser_rounded),
+                ),
+              ],
             ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Stack(
-                alignment: Alignment.topRight,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        title,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      // const SizedBox(height: 8),
-                      Text(
-                        workPeriodText,
-                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .outline
-                                  .withAlpha(190),
-                            ),
-                      ),
-                      const SizedBox(height: 8),
-                      SelectableText(description),
-                    ],
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      launchUrl(Uri.parse(link));
-                    },
-                    icon: const Icon(Icons.open_in_browser_rounded),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
