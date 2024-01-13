@@ -90,14 +90,17 @@ class ProfilePage extends StatelessWidget {
             //
             ;
 
-        return CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return newwidgets[index];
-              }, childCount: newwidgets.length),
-            ),
-          ],
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: CustomScrollView(
+            slivers: [
+              SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return newwidgets[index];
+                }, childCount: newwidgets.length),
+              ),
+            ],
+          ),
         );
       }),
     );

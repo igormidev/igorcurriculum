@@ -4,8 +4,8 @@ class OptimizedAsset extends StatelessWidget {
   final String assetName;
   final double width;
   final double height;
-  final int? cacheWidth;
-  final int? cacheHeight;
+  final int cacheWidth;
+  final int cacheHeight;
   final BoxFit? fit;
 
   const OptimizedAsset({
@@ -13,8 +13,8 @@ class OptimizedAsset extends StatelessWidget {
     required this.assetName,
     required this.width,
     required this.height,
-    this.cacheWidth,
-    this.cacheHeight,
+    required this.cacheWidth,
+    required this.cacheHeight,
     this.fit,
   });
 

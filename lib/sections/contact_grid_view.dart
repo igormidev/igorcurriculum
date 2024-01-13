@@ -14,6 +14,8 @@ final contactGridView = [
         text: 'Outlook',
         description: 'Text me an email\nigor-devwork@outlook.com',
         url: 'mailto:igor-devwork@outlook.com',
+        cacheHeight: 100,
+        cacheWidth: 100,
       ),
       SizedBox(width: 16),
       ContactTile(
@@ -22,6 +24,8 @@ final contactGridView = [
         text: 'Github',
         description: 'Check out my repositories\nhttps://github.com/igormidev',
         url: 'https://github.com/igormidev',
+        cacheHeight: 100,
+        cacheWidth: 100,
       ),
     ],
   ),
@@ -34,6 +38,8 @@ final contactGridView = [
         text: 'LinkedIn',
         description: 'Check out my profile\nlinkedin.com/in/igor-midev',
         url: 'https://www.linkedin.com/in/igor-midev/',
+        cacheHeight: 100,
+        cacheWidth: 100,
       ),
       SizedBox(width: 16),
       ContactTile(
@@ -42,6 +48,8 @@ final contactGridView = [
         text: 'WhatsApp',
         description: 'Send me a message\n+55 (21) 9 6710-3488',
         url: 'https://wa.me/5521967103488',
+        cacheHeight: 100,
+        cacheWidth: 100,
       ),
     ],
   ),
@@ -53,6 +61,9 @@ class ContactTile extends StatelessWidget {
   final String text;
   final String description;
   final String url;
+  final int cacheWidth;
+  final int cacheHeight;
+
   const ContactTile({
     super.key,
     required this.scale,
@@ -60,6 +71,8 @@ class ContactTile extends StatelessWidget {
     required this.text,
     required this.description,
     required this.url,
+    required this.cacheWidth,
+    required this.cacheHeight,
   });
 
   @override
@@ -95,6 +108,8 @@ class ContactTile extends StatelessWidget {
                           fit: BoxFit.cover,
                           width: 50,
                           height: 50,
+                          cacheWidth: cacheWidth,
+                          cacheHeight: cacheHeight,
                         ),
                       ).animate(delay: 800.milliseconds).fadeIn(
                             duration: 400.milliseconds,

@@ -35,6 +35,8 @@ class SourceCodeCard extends StatelessWidget {
                 height: 64,
                 width: 64,
                 fit: BoxFit.cover,
+                cacheHeight: 128,
+                cacheWidth: 128,
               ),
             ),
             const SizedBox(width: 8),

@@ -50,6 +50,8 @@ List<Widget> experienceSection(BuildContext context) => [
 With a lot of struggle and determination, I quickly went from being an amateur freelancer on the site to earning the "talent in accession" badge and recently being awarded the "top rated" freelancer badge. This way, I position myself among the top 5% of freelancers on the site.''',
         workPeriodText: 'march 2023 - present',
         link: 'https://www.upwork.com/freelancers/igormidev',
+        cacheHeight: 128,
+        cacheWidth: 128,
       ),
       const SizedBox(height: 8),
       const ExperienceTile(
@@ -76,6 +78,8 @@ In this application, among other things, I've done:
         workPeriodText: 'april 2023 - present',
         link:
             'https://play.google.com/store/apps/details?id=dreamstock.com.dreamstock&hl=pt_BR&gl=US',
+        cacheHeight: 128,
+        cacheWidth: 128,
       ),
       const SizedBox(height: 8),
       const ExperienceTile(
@@ -91,6 +95,8 @@ In this application, among other things, I've done:
         workPeriodText: 'april 2023 - dezember 2023',
         link:
             'https://play.google.com/store/apps/details?id=br.com.alineahealth.app&hl=pt&gl=US',
+        cacheHeight: 200,
+        cacheWidth: 200,
       ),
       const SizedBox(height: 8),
       const ExperienceTile(
@@ -104,6 +110,8 @@ In this application, among other things, I've done:
         workPeriodText: 'february 2022 - april 2023 (1 year 3 months)',
         link:
             'https://apps.apple.com/br/app/target-conta-digital/id1590916424?l=en',
+        cacheHeight: 200,
+        cacheWidth: 200,
       ),
       const SizedBox(height: 8),
       const ExperienceTile(
@@ -118,6 +126,8 @@ In this application, among other things, I've done:
         workPeriodText: 'february 2022 - april 2023 (1 year 3 months)',
         link:
             'https://play.google.com/store/apps/details?id=br.com.targetmp.cartaofrota&hl=pt_BR&gl=US',
+        cacheHeight: 128,
+        cacheWidth: 128,
       ),
     ];
 
@@ -127,6 +137,9 @@ class ExperienceTile extends StatelessWidget {
   final String description;
   final String workPeriodText;
   final String link;
+  final int cacheWidth;
+  final int cacheHeight;
+
   const ExperienceTile({
     super.key,
     required this.imageUrl,
@@ -134,6 +147,8 @@ class ExperienceTile extends StatelessWidget {
     required this.description,
     required this.workPeriodText,
     required this.link,
+    required this.cacheWidth,
+    required this.cacheHeight,
   });
 
   @override
@@ -152,6 +167,8 @@ class ExperienceTile extends StatelessWidget {
             height: 64,
             width: 64,
             fit: BoxFit.cover,
+            cacheWidth: cacheWidth,
+            cacheHeight: cacheHeight,
           ),
           const SizedBox(width: 8),
           Expanded(

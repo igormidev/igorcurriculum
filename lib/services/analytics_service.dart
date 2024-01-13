@@ -59,6 +59,7 @@ class AnalyticsService {
   }
 
   void openedSiteRepository() {
+    if (kDebugMode) return;
     final alreadyLoggedThisContact =
         _alreadyLogged.contains('repositoryOpened');
     if (kDebugMode || alreadyLoggedThisContact) return;
