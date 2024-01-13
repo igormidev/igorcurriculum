@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:igorcurriculum/shared/optimized_asset.dart';
 import 'package:igorcurriculum/theme_provider.dart';
-import 'package:image_network/image_network.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -283,13 +283,13 @@ class ProfileImage extends StatelessWidget {
                   topRight: Radius.circular(180),
                 ),
               ),
-              child: const ImageNetwork(
-                image:
-                    'https://github.com/igormidev/igorcurriculum/blob/master/art/igor_image.png?raw=true,',
+              child: const OptimizedAsset(
+                assetName: 'art/me.PNG',
                 height: 220,
                 width: width,
-                fitWeb: BoxFitWeb.cover,
-                onLoading: CircularProgressIndicator.adaptive(),
+                fit: BoxFit.cover,
+                cacheHeight: 440,
+                cacheWidth: 360,
               ),
             ),
           ),
@@ -393,19 +393,6 @@ class ColorOption extends StatelessWidget {
               backgroundColor: color,
               radius: isSelected ? 7 : 20,
             ),
-            // if (isSelected)
-            //   Align(
-            //     alignment: Alignment.bottomRight,
-            //     child: CircleAvatar(
-            //       radius: 10,
-            //       backgroundColor: Theme.of(context).colorScheme.inverseSurface,
-            //       child: Icon(
-            //         Icons.check,
-            //         color: Theme.of(context).colorScheme.surface,
-            //         size: 16,
-            //       ),
-            //     ),
-            //   ),
           ],
         ),
       ),
@@ -710,14 +697,22 @@ class WorkingWithMeAdvantagesTile extends StatefulWidget {
 class _WorkingWithMeAdvantagesTileState
     extends State<WorkingWithMeAdvantagesTile> {
   bool willAnimate = false;
+  late Timer _timer;
   @override
   void initState() {
     super.initState();
-    Future.delayed(widget.animationDelay, () {
+
+    _timer = Timer(widget.animationDelay, () {
       setState(() {
         willAnimate = true;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
   }
 
   @override

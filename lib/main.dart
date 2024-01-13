@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugInvertOversizedImages = true;
     return ChangeNotifierProvider(
       create: (_) => ThemeProvider(),
       child: LayoutBuilder(

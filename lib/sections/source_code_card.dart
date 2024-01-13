@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:igorcurriculum/services/analytics_service.dart';
-import 'package:image_network/image_network.dart';
+import 'package:igorcurriculum/shared/optimized_asset.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SourceCodeCard extends StatelessWidget {
@@ -30,13 +30,11 @@ class SourceCodeCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: const EdgeInsets.all(4),
-              child: const ImageNetwork(
-                image:
-                    'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
+              child: const OptimizedAsset(
+                assetName: 'art/tumbnails/contacts/github.PNG',
                 height: 64,
                 width: 64,
-                fitWeb: BoxFitWeb.cover,
-                onLoading: CircularProgressIndicator.adaptive(),
+                fit: BoxFit.cover,
               ),
             ),
             const SizedBox(width: 8),

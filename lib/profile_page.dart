@@ -17,14 +17,14 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       body: Builder(builder: (context) {
         if (width > 1200) {
-          const packagesExperienceSection = [
-            SizedBox(height: 8),
-            PackagesSection(),
-            Divider(height: 32),
-            ExperienceSection(),
-            Divider(height: 32),
-            SourceCodeCard(),
-            SizedBox(height: 20),
+          final packagesExperienceSection = [
+            const SizedBox(height: 8),
+            ...packagesSection(context),
+            const SizedBox(height: 32),
+            ...experienceSection(context),
+            const Divider(height: 32),
+            const SourceCodeCard(),
+            const SizedBox(height: 20),
           ];
 
           return Row(
@@ -57,11 +57,7 @@ class ProfilePage extends StatelessWidget {
                         child: const WorkingWithMeAdvantages(),
                       ),
                       const SizedBox(height: 8),
-                      ShimmerBuildDelayWrapper(
-                        duration: Constants.contactGrid,
-                        height: 154,
-                        child: const ContactGridView(),
-                      ),
+                      ...contactGridView,
                     ],
                   ),
                 ),
@@ -70,64 +66,39 @@ class ProfilePage extends StatelessWidget {
           );
         }
 
-        return Builder(builder: (context) {
-          final widgets = [
-            const SizedBox(height: 8),
-            const ProfileImage(),
-            const SizedBox(height: 8),
-            const WorkingWithMeAdvantages(),
-            const SizedBox(height: 8),
-            const ContactGridView(),
-            const SizedBox(height: 8),
-            const PackagesSection(),
-            const SizedBox(height: 8),
-            const ExperienceSection(),
-            const SizedBox(height: 8),
-            const SourceCodeCard(),
-            const SizedBox(height: 20),
-          ];
+        final newwidgets = [
+          const SizedBox(height: 8),
+          const ProfileImage(),
+          const SizedBox(height: 8),
+          const WorkingWithMeAdvantages(),
+          const SizedBox(height: 8),
+          ...contactGridView,
+          const SizedBox(height: 8),
+          ...packagesSection(context),
+          const SizedBox(height: 8),
+          ...experienceSection(context),
+          const SizedBox(height: 8),
+          const SourceCodeCard(),
+          const SizedBox(height: 20),
+        ]
+            // .asMap().entries.map((e) {
+            //   return Builder(builder: (context) {
+            //     print('builded ${e.key} | ${e.value}');
+            //     return e.value;
+            //   });
+            // }).toList()
+            //
+            ;
 
-          final widgetsnew = <Widget>[
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 8),
+        return CustomScrollView(
+          slivers: [
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return newwidgets[index];
+              }, childCount: newwidgets.length),
             ),
-            const SliverToBoxAdapter(
-              child: ProfileImage(),
-            ),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 8),
-            ),
-            const SliverToBoxAdapter(
-              child: WorkingWithMeAdvantages(),
-            ),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 8),
-            ),
-            const SliverToBoxAdapter(
-              child: ContactGridView(),
-            ),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 8),
-            ),
-            const PackagesSection(),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 8),
-            ),
-            const ExperienceSection(),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 8),
-            ),
-            const SliverToBoxAdapter(
-              child: SourceCodeCard(),
-            ),
-            const SliverToBoxAdapter(
-              child: SizedBox(height: 20),
-            ),
-          ];
-          return CustomScrollView(
-            slivers: widgetsnew,
-          );
-        });
+          ],
+        );
       }),
     );
   }

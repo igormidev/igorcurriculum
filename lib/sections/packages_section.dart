@@ -1,15 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:igorcurriculum/services/analytics_service.dart';
-import 'package:image_network/image_network.dart';
+import 'package:igorcurriculum/shared/optimized_asset.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class PackagesSection extends StatelessWidget {
-  const PackagesSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final widgets = [
+List<Widget> packagesSection(BuildContext context) => [
       SizedBox(
         height: 30,
         child: RichText(
@@ -49,15 +44,14 @@ class PackagesSection extends StatelessWidget {
       const ProjectsDemonstration(
         title: ' 📦 Dart Package - Debouncer  ',
         logName: 'dart_debouncer',
-        linkUrl: 'https://pub.dev/packages/dart_debouncer',
+        linkUrl: 'debouncer.PNG',
         shortDescription:
             '''💡 A package for creating debounce in dart will possibilities of multi instances debounce
 𝘞𝘪𝘵𝘩 𝘯𝘰 𝘴𝘪𝘯𝘨𝘭𝘦𝘵𝘰𝘯 𝘱𝘢𝘵𝘵𝘦𝘳𝘯, 𝘵𝘩𝘪𝘴 𝘱𝘢𝘤𝘬𝘢𝘨𝘦 𝘱𝘳𝘰𝘷𝘪𝘥𝘦𝘴 𝘢 𝘤𝘰𝘯𝘷𝘦𝘯𝘪𝘦𝘯𝘵  ''',
         description:
             '''💡 A package for creating debounce in dart will possibilities of multi instances debounce
 𝘞𝘪𝘵𝘩 𝘯𝘰 𝘴𝘪𝘯𝘨𝘭𝘦𝘵𝘰𝘯 𝘱𝘢𝘵𝘵𝘦𝘳𝘯, 𝘵𝘩𝘪𝘴 𝘱𝘢𝘤𝘬𝘢𝘨𝘦 𝘱𝘳𝘰𝘷𝘪𝘥𝘦𝘴 𝘢 𝘤𝘰𝘯𝘷𝘦𝘯𝘪𝘦𝘯𝘵 𝘸𝘢𝘺 𝘵𝘰 𝘩𝘢𝘯𝘥𝘭𝘦 𝘥𝘦𝘣𝘰𝘶𝘯𝘤𝘪𝘯𝘨 𝘴𝘤𝘦𝘯𝘢𝘳𝘪𝘰𝘴 𝘧𝘰𝘳 𝘶𝘴𝘦𝘳 𝘪𝘯𝘵𝘦𝘳𝘢𝘤𝘵𝘪𝘰𝘯𝘴, 𝘴𝘶𝘤𝘩 𝘢𝘴 𝘣𝘶𝘵𝘵𝘰𝘯 𝘱𝘳𝘦𝘴𝘴𝘦𝘴 𝘰𝘳 𝘵𝘦𝘹𝘵 𝘪𝘯𝘱𝘶𝘵 𝘤𝘩𝘢𝘯𝘨𝘦𝘴, 𝘪𝘯 𝘰𝘳𝘥𝘦𝘳 𝘵𝘰 𝘦𝘯𝘩𝘢𝘯𝘤𝘦 𝘵𝘩𝘦 𝘶𝘴𝘦𝘳 𝘦𝘹𝘱𝘦𝘳𝘪𝘦𝘯𝘤𝘦 𝘢𝘯𝘥 𝘢𝘷𝘰𝘪𝘥 𝘶𝘯𝘪𝘯𝘵𝘦𝘯𝘥𝘦𝘥 𝘢𝘤𝘵𝘪𝘰𝘯𝘴, 𝘶𝘯𝘯𝘦𝘤𝘦𝘴𝘴𝘢𝘳𝘺 𝘭𝘰𝘨𝘪𝘤 𝘦𝘹𝘦𝘤𝘶𝘵𝘪𝘰𝘯 𝘰𝘳 𝘧𝘳𝘦𝘲𝘶𝘦𝘯𝘵 𝘶𝘱𝘥𝘢𝘵𝘦𝘴.''',
-        imageUrl:
-            'https://pub.dev/packages/dart_debouncer/versions/1.0.3/gen-res/gen/main_logo.webp',
+        imageUrl: 'debouncer.PNG',
       ),
       const SizedBox(height: 8),
       const ProjectsDemonstration(
@@ -89,8 +83,7 @@ Cast functions
  ⦿ Transform a list into a map with mapper
  ⦿ Transform a map into a list
  ⦿ Cast object/dynamic to desired type  ''',
-        imageUrl:
-            'https://github.com/igormidev/enchanted_collection/blob/master/art/logo_image.png?raw=true',
+        imageUrl: 'enchanted_collection.PNG',
         size: Size(100, 100),
       ),
       const SizedBox(height: 8),
@@ -104,8 +97,7 @@ Cast functions
         description:
             '''💡A package that enhances dart regex api. Mainly when working with named group's.\n
 𝘛𝘩𝘢𝘵'𝘴 𝘣𝘦𝘤𝘢𝘶𝘴𝘦 𝘋𝘢𝘳𝘵 𝘳𝘦𝘨𝘦𝘹 𝘢𝘱𝘪 𝘪𝘴 𝘢 𝘨𝘰𝘰𝘥 𝘴𝘰𝘭𝘪𝘥 𝘣𝘢𝘴𝘦 𝘰𝘧 𝘢 𝘮𝘰𝘥𝘦𝘳𝘯 𝘳𝘦𝘨𝘦𝘹 𝘪𝘮𝘱𝘭𝘦𝘮𝘦𝘯𝘵𝘢𝘵𝘪𝘰𝘯. 𝘉𝘶𝘵 𝘪𝘵 𝘴𝘵𝘪𝘭𝘭 𝘭𝘢𝘤𝘬𝘴 𝘴𝘰𝘮𝘦 𝘮𝘰𝘳𝘦 𝘤𝘰𝘮𝘱𝘭𝘦𝘹 𝘧𝘶𝘯𝘤𝘵𝘪𝘰𝘯𝘴 (𝘴𝘶𝘤𝘩 𝘢𝘴 𝘣𝘦𝘵𝘵𝘦𝘳 𝘮𝘢𝘯𝘪𝘱𝘶𝘭𝘢𝘵𝘪𝘯𝘨 𝘨𝘳𝘰𝘶𝘱𝘴) 𝘢𝘯𝘥 𝘴𝘰𝘮𝘦 𝘢𝘶𝘹𝘪𝘭𝘪𝘢𝘳𝘺 𝘧𝘶𝘯𝘤𝘵𝘪𝘰𝘯𝘴. 𝘉𝘦𝘤𝘢𝘶𝘴𝘦 𝘰𝘧 𝘵𝘩𝘦𝘴𝘦 "𝘱𝘳𝘰𝘣𝘭𝘦𝘮𝘴", 𝘵𝘩𝘪𝘴 𝘱𝘢𝘤𝘬𝘢𝘨𝘦 𝘸𝘢𝘴 𝘤𝘳𝘦𝘢𝘵𝘦𝘥.  ''',
-        imageUrl:
-            'https://pub.dev/packages/enchanted_regex/versions/1.0.2/gen-res/gen/logo.webp',
+        imageUrl: 'enchanted_regex.PNG',
         size: Size(100, 100),
       ),
       const SizedBox(height: 8),
@@ -127,8 +119,7 @@ Cast functions
 - 𝘓𝘰𝘨 𝘌𝘳𝘳𝘰𝘳'𝘴/𝘴𝘵𝘢𝘤𝘬𝘵𝘳𝘢𝘤𝘦
 - 𝘓𝘰𝘨 𝘖𝘣𝘫𝘦𝘤𝘵𝘴 
 - 𝘋𝘦𝘵𝘦𝘳𝘮𝘪𝘯𝘦 𝘭𝘰𝘨𝘴 𝘮𝘢𝘹 𝘩𝘰𝘳𝘪𝘻𝘰𝘯𝘵𝘢𝘭 𝘭𝘦𝘯𝘨𝘵𝘩  ''',
-        imageUrl:
-            'https://pub.dev/packages/sandbox_logger/versions/2.1.0/gen-res/gen/logo.webp',
+        imageUrl: 'sandbox_logger.PNG',
       ),
       const SizedBox(height: 8),
       const ProjectsDemonstration(
@@ -141,15 +132,14 @@ Cast functions
         description: '''💡A package for displaying vertical youtube shorts.
           
 𝘠𝘰𝘶 𝘤𝘢𝘯 𝘤𝘩𝘰𝘰𝘴𝘦 𝘸𝘩𝘢𝘵 𝘴𝘩𝘰𝘳𝘵𝘴 𝘸𝘪𝘭𝘭 𝘣𝘦 𝘥𝘪𝘴𝘱𝘭𝘢𝘺𝘦𝘥 𝘣𝘺 𝘱𝘢𝘴𝘴𝘪𝘯𝘨 𝘢 𝘭𝘪𝘴𝘵 𝘰𝘧 𝘴𝘩𝘰𝘳𝘵𝘴 𝘶𝘳𝘭'𝘴 𝘰𝘳 𝘣𝘺 𝘱𝘢𝘴𝘴𝘪𝘯𝘨 𝘢 𝘤𝘩𝘢𝘯𝘯𝘦𝘭 𝘯𝘢𝘮𝘦. 𝘜𝘯𝘥𝘦𝘳 𝘵𝘩𝘦 𝘩𝘰𝘰𝘥 𝘵𝘩𝘦 𝘱𝘢𝘤𝘬𝘢𝘨𝘦 𝘪𝘴 𝘶𝘴𝘪𝘯𝘨 𝘺𝘰𝘶𝘵𝘶𝘣𝘦_𝘦𝘹𝘱𝘭𝘰𝘥𝘦_𝘥𝘢𝘳𝘵 𝘵𝘰 𝘨𝘦𝘵 𝘺𝘰𝘶𝘵𝘶𝘣𝘦 𝘷𝘪𝘥𝘦𝘰 𝘪𝘯𝘧𝘰 𝘢𝘯𝘥 𝘮𝘦𝘥𝘪𝘢_𝘬𝘪𝘵 𝘢𝘴 𝘵𝘩𝘦 𝘱𝘭𝘢𝘺𝘦𝘳 𝘧𝘰𝘳 𝘷𝘪𝘥𝘦𝘰𝘴.  ''',
-        imageUrl:
-            'https://pub.dev/packages/youtube_shorts/versions/0.4.5/gen-res/gen/screen_shot_1.webp',
+        imageUrl: 'shorts.PNG',
         size: Size(110, 100),
       ),
       const SizedBox(height: 8),
       const ProjectsDemonstration(
         title: ' 📦 Flutter Package - Field autocomplete  ',
         logName: 'autocomplete_textfield',
-        linkUrl: 'https://pub.dev/packages/cursor_autocomplete_options',
+        imageUrl: 'cursor_autocomplete.JPEG',
         shortDescription:
             '''💡Autocomplete dialog in textfield for desktop applications
 
@@ -158,20 +148,12 @@ Cast functions
             '''💡Autocomplete dialog in textfield for desktop applications
           
 𝘍𝘭𝘶𝘵𝘵𝘦𝘳 𝘢𝘭𝘳𝘦𝘢𝘥𝘺 𝘩𝘢𝘷𝘦 𝘢 𝘢𝘶𝘵𝘰𝘤𝘰𝘮𝘱𝘭𝘦𝘵𝘦 𝘸𝘪𝘥𝘨𝘦𝘵. 𝘉𝘶𝘵 𝘪𝘵 𝘥𝘰𝘴𝘦𝘯'𝘵 𝘮𝘢𝘵𝘤𝘩 𝘵𝘩𝘦 𝘦𝘹𝘱𝘦𝘤𝘵𝘦𝘥 𝘶𝘪 𝘱𝘢𝘵𝘵𝘦𝘳𝘯 𝘵𝘩𝘢𝘵 𝘯𝘰𝘳𝘮𝘢𝘭𝘺 𝘸𝘦 𝘴𝘦𝘦 𝘪𝘯 𝘥𝘦𝘴𝘬𝘵𝘰𝘱 𝘢𝘯𝘥 𝘸𝘦𝘣 𝘷𝘦𝘳𝘴𝘪𝘰𝘯𝘴.\n𝘛𝘩𝘢𝘵'𝘴 𝘣𝘦𝘤𝘢𝘶𝘴𝘦 𝘵𝘩𝘦 𝘢𝘶𝘵𝘰𝘤𝘰𝘮𝘱𝘭𝘦𝘵𝘦 𝘴𝘦𝘤𝘵𝘪𝘰𝘯 𝘪𝘴 𝘣𝘦𝘭𝘭𝘰𝘸 𝘵𝘩𝘦 𝘵𝘦𝘹𝘵𝘧𝘪𝘦𝘭𝘥 𝘢𝘯𝘥 𝘸𝘦 𝘤𝘢𝘯'𝘵 𝘤𝘩𝘢𝘯𝘨𝘦 𝘵𝘩𝘢𝘵 𝘪𝘯 𝘵𝘩𝘦 𝘢𝘶𝘵𝘰𝘤𝘰𝘮𝘱𝘭𝘦𝘵𝘦 𝘢𝘱𝘪.\n\n𝘍𝘰𝘳 𝘵𝘩𝘢𝘵 𝘳𝘦𝘢𝘴𝘰𝘯 𝘵𝘩𝘪𝘴 𝘱𝘢𝘤𝘬𝘢𝘨𝘦 𝘩𝘢𝘴 𝘣𝘦𝘦𝘯 𝘮𝘢𝘥𝘦. 𝘛𝘰 𝘨𝘪𝘷𝘦 𝘵𝘩𝘦 𝘱𝘰𝘴𝘴𝘪𝘣𝘪𝘭𝘪𝘵𝘺 𝘵𝘰 𝘥𝘪𝘴𝘱𝘭𝘢𝘺 𝘢 𝘭𝘪𝘴𝘵𝘷𝘪𝘦𝘸 𝘰𝘧 𝘰𝘱𝘵𝘪𝘰𝘯𝘴 𝘳𝘪𝘨𝘩𝘵 𝘣𝘦𝘭𝘭𝘰𝘸 𝘵𝘩𝘦 𝘤𝘶𝘳𝘴𝘰𝘳 𝘪𝘯𝘥𝘪𝘤𝘢𝘵𝘰𝘳 𝘸𝘪𝘵𝘩 𝘦𝘢𝘤𝘩 𝘢𝘶𝘵𝘰𝘤𝘰𝘮𝘱𝘭𝘦𝘵𝘪𝘰𝘯 𝘰𝘱𝘵𝘪𝘰𝘯 𝘪𝘯 𝘢 𝘭𝘪𝘴𝘵 𝘵𝘪𝘭𝘦 𝘥𝘪𝘴𝘱𝘭𝘢𝘺𝘦𝘥 𝘪𝘯 𝘢 𝘰𝘷𝘦𝘳𝘭𝘢𝘺.  ''',
-        imageUrl:
-            'https://pub.dev/packages/cursor_autocomplete_options/versions/1.3.1/gen-res/gen/showcase-1.webp',
+        linkUrl: 'https://pub.dev/packages/cursor_autocomplete_options',
         size: Size(130, 100),
         liveDemoUrl: 'https://igormidev.github.io/cursor_autocomplete_options/',
         liveDemoLogName: 'autocomplete_textfield',
       ),
     ];
-    return SliverList(
-      delegate: SliverChildBuilderDelegate((context, index) {
-        return widgets[index];
-      }, childCount: widgets.length),
-    );
-  }
-}
 
 class ProjectsDemonstration extends StatefulWidget {
   final String title;
@@ -303,12 +285,11 @@ class _ProjectsDemonstrationState extends State<ProjectsDemonstration> {
                 ),
               ),
               const SizedBox(width: 8),
-              ImageNetwork(
-                image: widget.imageUrl,
+              OptimizedAsset(
+                assetName: 'art/tumbnails/packages/${widget.imageUrl}',
                 height: widget.size?.height ?? 67,
                 width: widget.size?.width ?? 120,
-                fitWeb: BoxFitWeb.cover,
-                onLoading: const CircularProgressIndicator.adaptive(),
+                fit: BoxFit.cover,
               ),
             ],
           ),
