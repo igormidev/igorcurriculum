@@ -42,6 +42,32 @@ List<Widget> packagesSection(BuildContext context) => [
       ),
       const SizedBox(height: 8),
       const ProjectsDemonstration(
+        title: ' 📦 Flutter Package - Babel text  ',
+        logName: 'babel_text',
+        linkUrl: 'https://pub.dev/packages/babel_text',
+        shortDescription:
+            '''💡 A highly customizable rich text package for Flutter that turns inline markers into styles, taps, widgets and tooltips.
+
+Use a simple string syntax to make text bold, clickable, selectable or enhanced with inline widgets without manually composing `TextSpan`s.  ''',
+        description:
+            '''💡 A highly customizable rich text package for Flutter focused on dynamic text composition from a plain string.
+
+With `BabelText` and its related widgets, you can:
+ ⦿ Map markers to text styles such as bold, italic, underline and themed colors
+ ⦿ Attach callbacks to tappable text segments
+ ⦿ Inject inline widgets in the middle of the text flow
+ ⦿ Show hover tooltip messages for marked text
+ ⦿ Use selectable variants for copyable rich text
+ ⦿ Reuse app-wide default mappings for styles, widgets and interactions
+
+It is a practical abstraction over manual `TextSpan` trees when you need interactive, expressive text with much less boilerplate.''',
+        imageUrl: 'babel_text.png',
+        size: Size(100, 100),
+        cacheHeight: 200,
+        cacheWidth: 200,
+      ),
+      const SizedBox(height: 8),
+      const ProjectsDemonstration(
         title: ' 📦 Dart Package - Debouncer  ',
         logName: 'dart_debouncer',
         linkUrl: 'https://pub.dev/packages/dart_debouncer',
@@ -231,22 +257,29 @@ class _ProjectsDemonstrationState extends State<ProjectsDemonstration> {
                         launchUrl(Uri.parse(widget.linkUrl));
                       },
                       child: Row(
-                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color:
-                                  Theme.of(context).colorScheme.inversePrimary,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Text(
-                              widget.title,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .inversePrimary,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 4),
+                              child: Text(
+                                widget.title,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
                               ),
                             ),
                           ),
+                          const SizedBox(width: 4),
                           const Icon(Icons.open_in_new_rounded),
                         ],
                       ),

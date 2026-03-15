@@ -89,65 +89,59 @@ class ContactTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Stack(
+          child: Row(
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Container(
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Container(
+                  width: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: OptimizedAsset(
+                      assetName: 'art/tumbnails/contacts/$imagePath',
+                      fit: BoxFit.cover,
                       width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: AspectRatio(
-                        aspectRatio: 1,
-                        child: OptimizedAsset(
-                          assetName: 'art/tumbnails/contacts/$imagePath',
-                          fit: BoxFit.cover,
-                          width: 50,
-                          height: 50,
-                          cacheWidth: cacheWidth,
-                          cacheHeight: cacheHeight,
-                        ),
-                      ).animate(delay: 800.milliseconds).fadeIn(
-                            duration: 400.milliseconds,
-                          ),
+                      height: 50,
+                      cacheWidth: cacheWidth,
+                      cacheHeight: cacheHeight,
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        text,
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
+                  ).animate(delay: 800.milliseconds).fadeIn(
+                        duration: 400.milliseconds,
                       ),
-                      SelectableText(
-                        description,
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 13,
-                          color: Theme.of(context).colorScheme.outline,
-                          height: 1.1,
-                        ),
-                        textAlign: TextAlign.start,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(width: 8),
-                ],
-              ),
-              const Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.only(right: 12),
-                  child: Icon(Icons.open_in_new),
                 ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      text,
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    SelectableText(
+                      description,
+                      style: GoogleFonts.inter(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 13,
+                        color: Theme.of(context).colorScheme.outline,
+                        height: 1.1,
+                      ),
+                      textAlign: TextAlign.start,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Padding(
+                padding: EdgeInsets.only(right: 12),
+                child: Icon(Icons.open_in_new),
               ),
             ],
           ),

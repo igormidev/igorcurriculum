@@ -137,7 +137,7 @@ class ProfileImage extends StatelessWidget {
                 height: 40,
                 width: 180,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
                   borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(8),
                     bottomRight: Radius.circular(8),
@@ -172,7 +172,8 @@ class ProfileImage extends StatelessWidget {
                     width: 120,
                     height: 40,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surfaceVariant,
+                      color:
+                          Theme.of(context).colorScheme.surfaceContainerHighest,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(16),
                         topRight: Radius.circular(16),
@@ -194,7 +195,7 @@ class ProfileImage extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Theme.of(context)
                           .colorScheme
-                          .surfaceVariant
+                          .surfaceContainerHighest
                           .withAlpha(
                             100,
                           ),
@@ -221,7 +222,9 @@ class ProfileImage extends StatelessWidget {
                       width: 280,
                       height: 30,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surfaceVariant,
+                        color: Theme.of(context)
+                            .colorScheme
+                            .surfaceContainerHighest,
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(16),
                           topRight: Radius.circular(16),
@@ -239,7 +242,7 @@ class ProfileImage extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Theme.of(context)
                             .colorScheme
-                            .surfaceVariant
+                            .surfaceContainerHighest
                             .withAlpha(
                               100,
                             ),
@@ -277,7 +280,7 @@ class ProfileImage extends StatelessWidget {
               height: 220,
               width: width,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surfaceVariant,
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(180),
                   topRight: Radius.circular(180),
@@ -297,7 +300,10 @@ class ProfileImage extends StatelessWidget {
             alignment: Alignment.topCenter,
             child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surfaceVariant.withAlpha(
+                color: Theme.of(context)
+                    .colorScheme
+                    .surfaceContainerHighest
+                    .withAlpha(
                       100,
                     ),
                 borderRadius: BorderRadius.circular(8),
@@ -308,7 +314,10 @@ class ProfileImage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Row(
+                  const Wrap(
+                    spacing: 8,
+                    runSpacing: 4,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Text(
                         'Igor miranda',
@@ -372,7 +381,7 @@ class ColorOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = context.read<ThemeProvider>();
-    final isSelected = provider.colorValue == color.value;
+    final isSelected = provider.colorValue == color.toARGB32();
 
     return InkWell(
       onTap: () {
@@ -411,10 +420,13 @@ class WorkingWithMeAdvantages extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceVariant.withAlpha(100),
+        color: Theme.of(context)
+            .colorScheme
+            .surfaceContainerHighest
+            .withAlpha(100),
         borderRadius: BorderRadius.circular(8),
       ),
-      height: 370,
+      constraints: const BoxConstraints(minHeight: 370),
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       child: Column(
         children: [

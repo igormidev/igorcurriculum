@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  int colorValue = Colors.deepPurple.value;
+  int colorValue = Colors.deepPurple.toARGB32();
   Brightness brightness = Brightness.light;
 
   void changeBrightness(Brightness brightness) {
@@ -10,7 +10,7 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   void selectColor(Color color) {
-    colorValue = color.value;
+    colorValue = color.toARGB32();
     notifyListeners();
   }
 }

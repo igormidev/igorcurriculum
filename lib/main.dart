@@ -2,17 +2,25 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:igorcurriculum/core/constants.dart';
-import 'package:igorcurriculum/firebase_options.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:igorcurriculum/profile_page.dart';
 import 'package:igorcurriculum/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  WidgetsFlutterBinding.ensureInitialized();
+  await _initializeFirebase();
   runApp(const MyApp());
+}
+
+Future<void> _initializeFirebase() async {
+  try {
+    await Firebase.initializeApp();
+  } catch (error) {
+    if (kDebugMode) {
+      debugPrint('Firebase initialization skipped: $error');
+    }
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -20,9 +28,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (kDebugMode) {
-      debugInvertOversizedImages = true;
-    }
     return ChangeNotifierProvider(
       create: (_) => ThemeProvider(),
       child: LayoutBuilder(
