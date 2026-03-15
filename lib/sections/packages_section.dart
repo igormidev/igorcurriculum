@@ -191,6 +191,35 @@ Cast functions
         cacheHeight: 260,
         cacheWidth: 200,
       ),
+      const SizedBox(height: 8),
+      const ProjectsDemonstration(
+        title: ' 📦 Flutter Package - Pricing page  ',
+        logName: 'pricing_page',
+        imageUrl: 'pricing_page.png',
+        shortDescription:
+            '''💡 A pre-made responsive pricing page component for Flutter with built-in async loading feedback and polished plan cards.
+
+It helps you ship subscription or pricing UI quickly, including monthly and yearly billing presentation, without building the full screen from scratch.  ''',
+        description:
+            '''💡 A pre-made pricing page component for Flutter focused on fast setup of subscription and plan-selection screens.
+
+With `PricingBackground`, `PricingPage` and `PricesModel`, you can:
+ ⦿ Define multiple pricing tiers with monthly and yearly prices
+ ⦿ Get automatic loading-state handling for async CTA button actions
+ ⦿ Use a responsive mobile layout with desktop side-by-side pricing cards
+ ⦿ Choose between equal-height desktop cards or content-sized columns
+ ⦿ Customize the decoration, typography and overall visual styling
+ ⦿ Format feature strings with `babel_text` support
+
+It is a practical shortcut when you want a polished pricing experience quickly, while still keeping good control over the final UI.''',
+        linkUrl: 'https://pub.dev/packages/pricing_page',
+        size: Size(140, 100),
+        fit: BoxFit.contain,
+        liveDemoUrl: 'https://go-babel.github.io/pricing_page/',
+        liveDemoLogName: 'pricing_page_demo',
+        cacheHeight: 307,
+        cacheWidth: 375,
+      ),
     ];
 
 class ProjectsDemonstration extends StatefulWidget {
@@ -205,6 +234,7 @@ class ProjectsDemonstration extends StatefulWidget {
   final String logName;
   final int cacheWidth;
   final int cacheHeight;
+  final BoxFit fit;
 
   const ProjectsDemonstration({
     super.key,
@@ -216,6 +246,7 @@ class ProjectsDemonstration extends StatefulWidget {
     required this.logName,
     required this.cacheWidth,
     required this.cacheHeight,
+    this.fit = BoxFit.cover,
     this.size,
     this.liveDemoUrl,
     this.liveDemoLogName,
@@ -338,7 +369,7 @@ class _ProjectsDemonstrationState extends State<ProjectsDemonstration> {
                 assetName: 'art/tumbnails/packages/${widget.imageUrl}',
                 height: widget.size?.height ?? 67,
                 width: widget.size?.width ?? 120,
-                fit: BoxFit.cover,
+                fit: widget.fit,
                 cacheWidth: widget.cacheWidth,
                 cacheHeight: widget.cacheHeight,
               ),
