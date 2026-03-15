@@ -8,6 +8,8 @@ class SourceCodeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+
     return InkWell(
       onTap: () {
         launchUrl(Uri.parse('https://github.com/igormidev/igorcurriculum'));
@@ -24,21 +26,31 @@ class SourceCodeCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(width: 8),
-            Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: const EdgeInsets.all(4),
-              child: const OptimizedAsset(
+            if (isDarkMode)
+              const OptimizedAsset(
                 assetName: 'art/tumbnails/contacts/github.PNG',
                 height: 64,
                 width: 64,
                 fit: BoxFit.cover,
                 cacheHeight: 128,
                 cacheWidth: 128,
+              )
+            else
+              Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.all(4),
+                child: const OptimizedAsset(
+                  assetName: 'art/tumbnails/contacts/github.PNG',
+                  height: 64,
+                  width: 64,
+                  fit: BoxFit.cover,
+                  cacheHeight: 128,
+                  cacheWidth: 128,
+                ),
               ),
-            ),
             const SizedBox(width: 8),
             Expanded(
               child: Stack(

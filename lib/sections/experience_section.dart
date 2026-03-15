@@ -57,11 +57,11 @@ With a lot of struggle and determination, I quickly went from being an amateur f
       const ExperienceTile(
         imageUrl: 'dsf.JPEG',
         title:
-            '📈 Flutter Senior in app with more then +𝟓𝟎𝟎 𝐭𝐡𝐨𝐮𝐬𝐚𝐧𝐝 𝐮𝐬𝐞𝐫𝐬',
+            '📈 Flutter Senior in app with more then +8𝟎𝟎 𝐭𝐡𝐨𝐮𝐬𝐚𝐧𝐝 𝐮𝐬𝐞𝐫𝐬',
         description:
             '''⚽️ Football social media that connects users to other users and clubs with partnership for selections
 
- 📈 Success app! More then 500 thousand of downloads.
+ 📈 Success app! More then 800 thousand of downloads.
 
 In this application, among other things, I've done:
  • 𝗕𝗿𝗮𝘇𝗶𝗹𝗶𝗮𝗻 𝗽𝗶𝘅 𝗽𝗮𝘆𝗺𝗲𝗻𝘁 𝗶𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗶𝗼𝗻

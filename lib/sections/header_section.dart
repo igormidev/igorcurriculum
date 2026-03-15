@@ -512,7 +512,7 @@ class WorkingWithMeAdvantages extends StatelessWidget {
                   text: 'maintain',
                   style: defaltStyle.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.scrim,
+                    color: Theme.of(context).colorScheme.onSurface,
                     decoration: TextDecoration.underline,
                   ),
                 );
@@ -528,7 +528,7 @@ class WorkingWithMeAdvantages extends StatelessWidget {
                   text: 'modify',
                   style: defaltStyle.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.scrim,
+                    color: Theme.of(context).colorScheme.onSurface,
                     decoration: TextDecoration.underline,
                   ),
                 );
@@ -544,7 +544,7 @@ class WorkingWithMeAdvantages extends StatelessWidget {
                   text: 'scale',
                   style: defaltStyle.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.scrim,
+                    color: Theme.of(context).colorScheme.onSurface,
                     decoration: TextDecoration.underline,
                   ),
                 );
@@ -588,7 +588,7 @@ class WorkingWithMeAdvantages extends StatelessWidget {
                   text: 'yesterday',
                   style: defaltStyle.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.scrim,
+                    color: Theme.of(context).colorScheme.onSurface,
                     decoration: TextDecoration.underline,
                   ),
                 );
@@ -604,7 +604,7 @@ class WorkingWithMeAdvantages extends StatelessWidget {
                   text: 'today',
                   style: defaltStyle.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.scrim,
+                    color: Theme.of(context).colorScheme.onSurface,
                     decoration: TextDecoration.underline,
                   ),
                 );
@@ -620,7 +620,7 @@ class WorkingWithMeAdvantages extends StatelessWidget {
                   text: 'tomorrow',
                   style: defaltStyle.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.scrim,
+                    color: Theme.of(context).colorScheme.onSurface,
                     decoration: TextDecoration.underline,
                   ),
                 );
@@ -671,7 +671,7 @@ class WorkingWithMeAdvantages extends StatelessWidget {
                   text: 'zero interest',
                   style: defaltStyle.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.scrim,
+                    color: Theme.of(context).colorScheme.onSurface,
                     decoration: TextDecoration.underline,
                   ),
                 );
