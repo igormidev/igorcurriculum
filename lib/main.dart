@@ -1,5 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:igorcurriculum/core/constants.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -9,18 +7,7 @@ import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await _initializeFirebase();
   runApp(const MyApp());
-}
-
-Future<void> _initializeFirebase() async {
-  try {
-    await Firebase.initializeApp();
-  } catch (error) {
-    if (kDebugMode) {
-      debugPrint('Firebase initialization skipped: $error');
-    }
-  }
 }
 
 class MyApp extends StatelessWidget {

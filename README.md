@@ -3,4 +3,9 @@ To demonstrate my career achievements, employment history, open source projects 
 
 ![](https://github.com/igormidev/igorcurriculum/blob/master/art/how_i_can_help_you_print.png?raw=true)
 ## How to run project?
-Need to configure a firebase project with `flutterfire_cli`. [Click here](https://firebase.google.com/docs/flutter/setup?hl=pt-br&platform=ios) to see how to add it.
+Install the Flutter dependencies and run the app normally:
+
+```bash
+flutter pub get
+flutter run -d chrome
+```
