@@ -30,25 +30,49 @@ class AnalyticsService {
   }
 
   final List<String> _alreadyLogged = [];
-  void logContact(String contactName) {
-    final alreadyLoggedThisContact = _alreadyLogged.contains(contactName);
+  void _logUniqueEvent({
+    required String uniqueKey,
+    required String eventName,
+  }) {
+    final alreadyLoggedThisContact = _alreadyLogged.contains(uniqueKey);
     if (kDebugMode || alreadyLoggedThisContact) return;
-    _alreadyLogged.add(contactName);
-    _logEvent('tap_contact_$contactName');
+    _alreadyLogged.add(uniqueKey);
+    _logEvent(eventName);
+  }
+
+  void logContact(String contactName) {
+    _logUniqueEvent(
+      uniqueKey: contactName,
+      eventName: 'tap_contact_$contactName',
+    );
   }
 
   void logOpenedPackage(String packageName) {
-    final alreadyLoggedThisContact = _alreadyLogged.contains(packageName);
-    if (kDebugMode || alreadyLoggedThisContact) return;
-    _alreadyLogged.add(packageName);
-    _logEvent('opened_package_$packageName');
+    _logUniqueEvent(
+      uniqueKey: packageName,
+      eventName: 'opened_package_$packageName',
+    );
   }
 
   void logOpenedLiveDemo(String demoName) {
-    final alreadyLoggedThisContact = _alreadyLogged.contains(demoName);
-    if (kDebugMode || alreadyLoggedThisContact) return;
-    _alreadyLogged.add(demoName);
-    _logEvent('opened_demo_$demoName');
+    _logUniqueEvent(
+      uniqueKey: demoName,
+      eventName: 'opened_demo_$demoName',
+    );
+  }
+
+  void logOpenedSaasWebsite(String saasName) {
+    _logUniqueEvent(
+      uniqueKey: 'saas_website_$saasName',
+      eventName: 'opened_saas_website_$saasName',
+    );
+  }
+
+  void logOpenedSaasRepository(String saasName) {
+    _logUniqueEvent(
+      uniqueKey: 'saas_repo_$saasName',
+      eventName: 'opened_saas_repository_$saasName',
+    );
   }
 
   final Debouncer _debouncerChangeColor = Debouncer(timerDuration: 3.seconds);
@@ -68,11 +92,9 @@ class AnalyticsService {
   }
 
   void openedSiteRepository() {
-    if (kDebugMode) return;
-    final alreadyLoggedThisContact =
-        _alreadyLogged.contains('repositoryOpened');
-    if (kDebugMode || alreadyLoggedThisContact) return;
-    _alreadyLogged.add('repositoryOpened');
-    _logEvent('opened_site_repository');
+    _logUniqueEvent(
+      uniqueKey: 'repositoryOpened',
+      eventName: 'opened_site_repository',
+    );
   }
 }

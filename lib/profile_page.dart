@@ -4,6 +4,7 @@ import 'package:igorcurriculum/sections/contact_grid_view.dart';
 import 'package:igorcurriculum/sections/experience_section.dart';
 import 'package:igorcurriculum/sections/header_section.dart';
 import 'package:igorcurriculum/sections/packages_section.dart';
+import 'package:igorcurriculum/sections/saas_attempts_section.dart';
 import 'package:igorcurriculum/sections/source_code_card.dart';
 import 'package:igorcurriculum/shared/shimmer_build_delay_wrapper.dart';
 
@@ -20,6 +21,8 @@ class ProfilePage extends StatelessWidget {
           final packagesExperienceSection = [
             const SizedBox(height: 8),
             ...packagesSection(context),
+            const SizedBox(height: 32),
+            ...saasAttemptsSection(context),
             const SizedBox(height: 32),
             ...experienceSection(context),
             const Divider(height: 32),
@@ -75,6 +78,8 @@ class ProfilePage extends StatelessWidget {
           ...contactGridView,
           const SizedBox(height: 8),
           ...packagesSection(context),
+          const SizedBox(height: 8),
+          ...saasAttemptsSection(context),
           const SizedBox(height: 8),
           ...experienceSection(context),
           const SizedBox(height: 8),
