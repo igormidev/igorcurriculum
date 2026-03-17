@@ -20,7 +20,7 @@ class SourceCodeCard extends StatelessWidget {
           color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(8),
         ),
-        height: 92,
+        constraints: const BoxConstraints(minHeight: 92),
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

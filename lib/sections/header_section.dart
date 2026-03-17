@@ -214,7 +214,7 @@ class ProfileImage extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomLeft,
               child: Padding(
-                padding: const EdgeInsets.only(left: 128.0),
+                padding: const EdgeInsets.only(left: 134.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [

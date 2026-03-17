@@ -1,7 +1,7 @@
 import 'package:dart_debouncer/dart_debouncer.dart';
 
 class Constants {
-  static const double screenWidth = 600;
+  static const double screenWidth = 610;
   static bool isMobileSize = false;
   bool get isMobile => isMobileSize;
 
