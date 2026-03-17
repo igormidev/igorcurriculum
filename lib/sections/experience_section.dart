@@ -1,44 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:igorcurriculum/shared/optimized_asset.dart';
+import 'package:igorcurriculum/shared/curriculum_section.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-List<Widget> experienceSection(BuildContext context) => [
-      SizedBox(
-        height: 30,
-        child: RichText(
-          text: TextSpan(children: [
-            TextSpan(
-              text: 'Experience',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
-            ),
-            TextSpan(
-              text: ' • Employment history',
-              style: TextStyle(
-                fontWeight: FontWeight.normal,
-                fontSize: 23,
-                color: Theme.of(context).colorScheme.outline,
-              ),
-            ),
-          ]),
-        ),
-      ),
-      const SizedBox(height: 8),
-      SizedBox(
-        height: 26,
-        child: Text(
-          'My relevant experiences working with flutter.',
-          style: TextStyle(
-            fontWeight: FontWeight.w300,
-            color: Theme.of(context).colorScheme.outline,
-            fontSize: 16,
-          ),
-        ),
-      ),
-      const SizedBox(height: 8),
+const experienceSectionData = CurriculumSectionData(
+  id: 'experience',
+  title: 'Experience',
+  subtitle: 'Employment history',
+  description:
+      'My strongest professional work shipping Flutter products in production, from senior delivery to technical leadership.',
+  buildChildren: _buildExperienceSectionChildren,
+);
+
+List<Widget> _buildExperienceSectionChildren(BuildContext context) => [
       const ExperienceTile(
         imageUrl: 'upwork.jpeg',
         title:
@@ -162,54 +136,91 @@ class ExperienceTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          OptimizedAsset(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final shouldStack = constraints.maxWidth < 470;
+
+          final image = OptimizedAsset(
             assetName: 'art/tumbnails/work/$imageUrl',
             height: 64,
             width: 64,
             fit: BoxFit.cover,
             cacheWidth: cacheWidth,
             cacheHeight: cacheHeight,
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Stack(
-              alignment: Alignment.topRight,
+          );
+
+          final titleBlock = Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Text(
+                workPeriodText,
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color:
+                          Theme.of(context).colorScheme.outline.withAlpha(190),
+                    ),
+              ),
+            ],
+          );
+
+          final openButton = IconButton(
+            onPressed: () {
+              launchUrl(Uri.parse(link));
+            },
+            icon: const Icon(Icons.open_in_browser_rounded),
+          );
+
+          if (shouldStack) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
-                      title,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    // const SizedBox(height: 8),
-                    Text(
-                      workPeriodText,
-                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .outline
-                                .withAlpha(190),
-                          ),
-                    ),
-                    const SizedBox(height: 8),
-                    SelectableText(description),
+                    image,
+                    const SizedBox(width: 10),
+                    Expanded(child: titleBlock),
+                    openButton,
                   ],
                 ),
-                IconButton(
-                  onPressed: () {
-                    launchUrl(Uri.parse(link));
-                  },
-                  icon: const Icon(Icons.open_in_browser_rounded),
-                ),
+                const SizedBox(height: 10),
+                SelectableText(description),
               ],
-            ),
-          ),
-        ],
+            );
+          }
+
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              image,
+              const SizedBox(width: 8),
+              Expanded(
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 44),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          titleBlock,
+                          const SizedBox(height: 8),
+                          SelectableText(description),
+                        ],
+                      ),
+                    ),
+                    openButton,
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

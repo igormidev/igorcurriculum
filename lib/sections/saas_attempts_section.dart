@@ -1,41 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:igorcurriculum/services/analytics_service.dart';
 import 'package:igorcurriculum/shared/project_showcase_card.dart';
+import 'package:igorcurriculum/shared/curriculum_section.dart';
 
-List<Widget> saasAttemptsSection(BuildContext context) => [
-      SizedBox(
-        height: 30,
-        child: RichText(
-          text: TextSpan(children: [
-            TextSpan(
-              text: 'SaaS attempts',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
-            ),
-            TextSpan(
-              text: ' • Finished products',
-              style: TextStyle(
-                fontWeight: FontWeight.normal,
-                fontSize: 23,
-                color: Theme.of(context).colorScheme.outline,
-              ),
-            ),
-          ]),
-        ),
-      ),
-      const SizedBox(height: 8),
-      Text(
-        'I tried to create several SaaS products in the past. I only finished and published two of them, and they are the ones below. These are real, dense, complex, 100% complete products that ran in production. They did not return the profit I wanted, so I open sourced them as curriculum projects.',
-        style: TextStyle(
-          fontWeight: FontWeight.w300,
-          color: Theme.of(context).colorScheme.outline,
-          fontSize: 16,
-        ),
-      ),
-      const SizedBox(height: 8),
+const saasAttemptsSectionData = CurriculumSectionData(
+  id: 'saas-attempts',
+  title: 'SaaS attempts',
+  subtitle: 'Finished products',
+  description:
+      'I tried to create several SaaS products in the past. I only finished and published two of them. These are real, dense products that ran in production and are now open sourced as curriculum projects.',
+  buildChildren: _buildSaasAttemptsSectionChildren,
+);
+
+List<Widget> _buildSaasAttemptsSectionChildren(BuildContext context) => [
       const ProjectShowcaseCard(
         title: ' 🚀 SaaS - ZenScrap  ',
         titleLinkUrl: 'https://github.com/igormidev/zenscrap',

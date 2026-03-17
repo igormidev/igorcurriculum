@@ -70,7 +70,7 @@ class _ShimmerBuildDelayWrapperState extends State<ShimmerBuildDelayWrapper> {
         }
 
         return Container(
-          width: Constants.screenWidth,
+          width: double.infinity,
           height: widget.height,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.outlineVariant,

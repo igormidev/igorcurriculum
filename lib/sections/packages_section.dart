@@ -1,44 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:igorcurriculum/services/analytics_service.dart';
 import 'package:igorcurriculum/shared/project_showcase_card.dart';
+import 'package:igorcurriculum/shared/curriculum_section.dart';
 
-List<Widget> packagesSection(BuildContext context) => [
-      SizedBox(
-        height: 30,
-        child: RichText(
-          text: TextSpan(children: [
-            TextSpan(
-              text: 'My public packages',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
-              ),
-            ),
-            TextSpan(
-              text: ' • Open source projects',
-              style: TextStyle(
-                fontWeight: FontWeight.normal,
-                fontSize: 23,
-                color: Theme.of(context).colorScheme.outline,
-              ),
-            ),
-          ]),
-        ),
-      ),
-      const SizedBox(height: 8),
-      SizedBox(
-        height: 45,
-        child: Text(
-          'In my flutter developer carrer I developed some open source packages projects. Bellow you can see some of them.',
-          style: TextStyle(
-            fontWeight: FontWeight.w300,
-            color: Theme.of(context).colorScheme.outline,
-            fontSize: 16,
-          ),
-        ),
-      ),
-      const SizedBox(height: 8),
+const packagesSectionData = CurriculumSectionData(
+  id: 'packages',
+  title: 'My public packages',
+  subtitle: 'Open source projects',
+  description:
+      'In my Flutter developer career I built and published several open source packages. Here are the strongest examples.',
+  buildChildren: _buildPackagesSectionChildren,
+);
+
+List<Widget> _buildPackagesSectionChildren(BuildContext context) => [
       const ProjectShowcaseCard(
         title: ' 📦 Flutter Package - Babel text  ',
         titleLinkUrl: 'https://pub.dev/packages/babel_text',

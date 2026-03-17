@@ -5,54 +5,80 @@ import 'package:igorcurriculum/services/analytics_service.dart';
 import 'package:igorcurriculum/shared/optimized_asset.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final contactGridView = [
-  const Row(
-    children: [
-      ContactTile(
-        scale: 1.0,
-        imagePath: 'outlook.png',
-        text: 'Outlook',
-        description: 'Text me an email\nigor-devwork@outlook.com',
-        url: 'mailto:igor-devwork@outlook.com',
-        cacheHeight: 100,
-        cacheWidth: 100,
-      ),
-      SizedBox(width: 16),
-      ContactTile(
-        scale: 0.9,
-        imagePath: 'github.PNG',
-        text: 'Github',
-        description: 'Check out my repositories\nhttps://github.com/igormidev',
-        url: 'https://github.com/igormidev',
-        cacheHeight: 100,
-        cacheWidth: 100,
-      ),
-    ],
-  ),
-  const SizedBox(height: 8),
-  const Row(
-    children: [
-      ContactTile(
-        scale: 1.5,
-        imagePath: 'linkedin.png',
-        text: 'LinkedIn',
-        description: 'Check out my profile\nlinkedin.com/in/igor-midev',
-        url: 'https://www.linkedin.com/in/igor-midev/',
-        cacheHeight: 100,
-        cacheWidth: 100,
-      ),
-      SizedBox(width: 16),
-      ContactTile(
-        scale: 1.3,
-        imagePath: 'whatsapp.PNG',
-        text: 'WhatsApp',
-        description: 'Send me a message\n+55 (21) 9 6710-3488',
-        url: 'https://wa.me/5521967103488',
-        cacheHeight: 100,
-        cacheWidth: 100,
-      ),
-    ],
-  ),
+List<Widget> buildContactGridView(BuildContext context) => const [
+      ContactGridSection(),
+    ];
+
+class ContactGridSection extends StatelessWidget {
+  const ContactGridSection({super.key});
+
+  static const _contacts = [
+    ContactTile(
+      scale: 1.0,
+      imagePath: 'outlook.png',
+      text: 'Outlook',
+      description: 'Text me an email\nigor-devwork@outlook.com',
+      url: 'mailto:igor-devwork@outlook.com',
+      cacheHeight: 100,
+      cacheWidth: 100,
+    ),
+    ContactTile(
+      scale: 0.9,
+      imagePath: 'github.PNG',
+      text: 'Github',
+      description: 'Check out my repositories\nhttps://github.com/igormidev',
+      url: 'https://github.com/igormidev',
+      cacheHeight: 100,
+      cacheWidth: 100,
+    ),
+    ContactTile(
+      scale: 1.5,
+      imagePath: 'linkedin.png',
+      text: 'LinkedIn',
+      description: 'Check out my profile\nlinkedin.com/in/igor-midev',
+      url: 'https://www.linkedin.com/in/igor-midev/',
+      cacheHeight: 100,
+      cacheWidth: 100,
+    ),
+    ContactTile(
+      scale: 1.3,
+      imagePath: 'whatsapp.PNG',
+      text: 'WhatsApp',
+      description: 'Send me a message\n+55 (21) 9 6710-3488',
+      url: 'https://wa.me/5521967103488',
+      cacheHeight: 100,
+      cacheWidth: 100,
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        const spacing = 12.0;
+        final columns = constraints.maxWidth < 470 ? 1 : 2;
+        final itemWidth = columns == 1
+            ? constraints.maxWidth
+            : (constraints.maxWidth - spacing) / 2;
+
+        return Wrap(
+          spacing: spacing,
+          runSpacing: spacing,
+          children: [
+            for (final contact in _contacts)
+              SizedBox(
+                width: itemWidth,
+                child: contact,
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+const contactGridView = [
+  ContactGridSection(),
 ];
 
 class ContactTile extends StatelessWidget {
@@ -77,79 +103,77 @@ class ContactTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: InkWell(
-        onTap: () {
-          launchUrl(Uri.parse(url));
-          AnalyticsService.instance.logContact(text.toLowerCase());
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primaryContainer,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Container(
-                  width: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
+    return InkWell(
+      onTap: () {
+        launchUrl(Uri.parse(url));
+        AnalyticsService.instance.logContact(text.toLowerCase());
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primaryContainer,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: Container(
+                width: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: AspectRatio(
+                  aspectRatio: 1,
+                  child: OptimizedAsset(
+                    assetName: 'art/tumbnails/contacts/$imagePath',
+                    fit: BoxFit.cover,
+                    width: 50,
+                    height: 50,
+                    cacheWidth: cacheWidth,
+                    cacheHeight: cacheHeight,
                   ),
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: OptimizedAsset(
-                      assetName: 'art/tumbnails/contacts/$imagePath',
-                      fit: BoxFit.cover,
-                      width: 50,
-                      height: 50,
-                      cacheWidth: cacheWidth,
-                      cacheHeight: cacheHeight,
+                ).animate(delay: 800.milliseconds).fadeIn(
+                      duration: 400.milliseconds,
                     ),
-                  ).animate(delay: 800.milliseconds).fadeIn(
-                        duration: 400.milliseconds,
-                      ),
-                ),
               ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      text,
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    text,
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
                     ),
-                    SelectableText(
-                      description,
-                      style: GoogleFonts.inter(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 13,
-                        color: Theme.of(context).colorScheme.outline,
-                        height: 1.1,
-                      ),
-                      textAlign: TextAlign.start,
+                  ),
+                  SelectableText(
+                    description,
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 13,
+                      color: Theme.of(context).colorScheme.outline,
+                      height: 1.1,
                     ),
-                  ],
-                ),
+                    textAlign: TextAlign.start,
+                  ),
+                ],
               ),
-              const SizedBox(width: 8),
-              const Padding(
-                padding: EdgeInsets.only(right: 12),
-                child: Icon(Icons.open_in_new),
-              ),
-            ],
-          ),
-        )
-            .animate(delay: 300.milliseconds)
-            .fade()
-            .scale(duration: 200.milliseconds),
-      ),
+            ),
+            const SizedBox(width: 8),
+            const Padding(
+              padding: EdgeInsets.only(right: 12),
+              child: Icon(Icons.open_in_new),
+            ),
+          ],
+        ),
+      )
+          .animate(delay: 300.milliseconds)
+          .fade()
+          .scale(duration: 200.milliseconds),
     );
   }
 }

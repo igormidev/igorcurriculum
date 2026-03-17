@@ -1,41 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:igorcurriculum/shared/curriculum_section.dart';
 
-List<Widget> skillsSection(BuildContext context) => [
-      SizedBox(
-        height: 30,
-        child: RichText(
-          text: TextSpan(
-            children: [
-              TextSpan(
-                text: 'Technical edge',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
-              ),
-              TextSpan(
-                text: ' • What sets my work apart',
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 23,
-                  color: Theme.of(context).colorScheme.outline,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      const SizedBox(height: 8),
-      Text(
-        'Deep Flutter expertise, production-grade Dart backend range, advanced AI workflow depth and architecture discipline for products that need to feel fast, stable and built to last.',
-        style: TextStyle(
-          fontWeight: FontWeight.w300,
-          color: Theme.of(context).colorScheme.outline,
-          fontSize: 16,
-        ),
-      ),
-      const SizedBox(height: 12),
+const skillsSectionData = CurriculumSectionData(
+  id: 'technical-edge',
+  title: 'Technical edge',
+  subtitle: 'What sets my work apart',
+  description:
+      'Deep Flutter expertise, production-grade Dart backend range, advanced AI workflow depth and architecture discipline for products that need to feel fast, stable and built to last.',
+  buildChildren: _buildSkillsSectionChildren,
+);
+
+List<Widget> _buildSkillsSectionChildren(BuildContext context) => [
       const _SkillsShowcase(),
     ];
 

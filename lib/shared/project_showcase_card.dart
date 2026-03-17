@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:igorcurriculum/shared/optimized_asset.dart';
@@ -167,8 +169,12 @@ class _ProjectShowcaseCardState extends State<ProjectShowcaseCard> {
         children: [
           LayoutBuilder(
             builder: (context, constraints) {
-              final shouldStackImage =
-                  widget.stackImageOnNarrowWidth && constraints.maxWidth < 500;
+              final imageWidth = widget.size?.width ?? 120;
+              final automaticStackBreakpoint = imageWidth + 300;
+              final preferredStackBreakpoint =
+                  widget.stackImageOnNarrowWidth ? 500.0 : 0.0;
+              final shouldStackImage = constraints.maxWidth <
+                  math.max(automaticStackBreakpoint, preferredStackBreakpoint);
 
               if (shouldStackImage) {
                 return Column(
