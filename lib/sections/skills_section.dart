@@ -8,8 +8,8 @@ const skillsSectionData = CurriculumSectionData(
   title: 'Technical edge',
   tabLabel: 'Tecnical Edge',
   subtitle: 'What sets my work apart',
-  description: null,
-  // 'Deep Flutter expertise, production-grade Dart backend range, advanced AI workflow depth and architecture discipline for products that need to feel fast, stable and built to last.',
+  description:
+      'Deep Flutter expertise, production-grade Dart backend range, advanced AI workflow depth and architecture discipline for products that need to feel fast, stable and built to last.',
   buildChildren: _buildSkillsSectionChildren,
 );
 
