@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:babel_text/babel_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -409,8 +410,6 @@ class ColorOption extends StatelessWidget {
   }
 }
 
-typedef TextSpanBuilder = TextSpan Function(TextStyle defaultStyle);
-
 class WorkingWithMeAdvantages extends StatelessWidget {
   const WorkingWithMeAdvantages({super.key});
 
@@ -449,241 +448,35 @@ class WorkingWithMeAdvantages extends StatelessWidget {
           ),
           WorkingWithMeAdvantagesTile(
             animationDelay: (delay + 750).milliseconds,
-            textSpans: [
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'Ensure',
-                  style: defaltStyle.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: ' that your user has an application that ',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'runs smoothly',
-                  style: defaltStyle.copyWith(
-                    fontStyle: FontStyle.italic,
-                    decoration: TextDecoration.underline,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: ' and is not constantly plagued by bugs.',
-                  style: defaltStyle,
-                );
-              },
-            ],
+            text: '<b><pC>Ensure<pC><b> that your user has an application that '
+                '<u><i>runs smoothly<i><u> and is not constantly plagued by '
+                'bugs.',
           ),
           const Divider(),
           WorkingWithMeAdvantagesTile(
             animationDelay: (delay + 1500).milliseconds,
-            textSpans: [
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'Have ',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'clean code',
-                  style: defaltStyle.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: '. Easy to ',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'maintain',
-                  style: defaltStyle.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    decoration: TextDecoration.underline,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: ', ',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'modify',
-                  style: defaltStyle.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    decoration: TextDecoration.underline,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: ' and ',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'scale',
-                  style: defaltStyle.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    decoration: TextDecoration.underline,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text:
-                      '. No more starting the project at a great speed and after a while spending more time correcting code than writing new features.',
-                  style: defaltStyle,
-                );
-              },
-            ],
+            text:
+                'Have <b><pC>clean code<pC><b>. Easy to <u><b>maintain<b><u>, '
+                '<u><b>modify<b><u> and <u><b>scale<b><u>. No more starting '
+                'the project at a great speed and after a while spending more '
+                'time correcting code than writing new features.',
           ),
           const Divider(),
           WorkingWithMeAdvantagesTile(
             animationDelay: (delay + 2250).milliseconds,
-            textSpans: [
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'Receive ',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'constant updates',
-                  style: defaltStyle.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: '. You will always know what I did ',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'yesterday',
-                  style: defaltStyle.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    decoration: TextDecoration.underline,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: ', ',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'today',
-                  style: defaltStyle.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    decoration: TextDecoration.underline,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: ' and what I\'m going to do ',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'tomorrow',
-                  style: defaltStyle.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    decoration: TextDecoration.underline,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: '.',
-                  style: defaltStyle,
-                );
-              },
-            ],
+            text:
+                'Receive <b><pC>constant updates<pC><b>. You will always know '
+                'what I did <u><b>yesterday<b><u>, <u><b>today<b><u> and what '
+                'I\'m going to do <u><b>tomorrow<b><u>.',
           ),
           const Divider(),
           WorkingWithMeAdvantagesTile(
             animationDelay: (delay + 3000).milliseconds,
-            textSpans: [
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'SAVE MONEY',
-                  style: defaltStyle.copyWith(
-                    fontWeight: FontWeight.w900,
-                    color: Theme.of(context).colorScheme.primary,
-                    fontStyle: FontStyle.italic,
-                    decoration: TextDecoration.underline,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: ' by working with someone who ',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'doesn\'t screw around',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: ' just to get more paid hours. I have ',
-                  style: defaltStyle,
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: 'zero interest',
-                  style: defaltStyle.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSurface,
-                    decoration: TextDecoration.underline,
-                  ),
-                );
-              },
-              (defaltStyle) {
-                return TextSpan(
-                  text: ' in making the project take longer than '
-                      'necessary to deliver it with quality.',
-                  style: defaltStyle,
-                );
-              },
-            ],
+            text:
+                '<u><i><b><pC>SAVE MONEY<pC><b><i><u> by working with someone '
+                'who doesn\'t screw around just to get more paid hours. I have '
+                '<u><b>zero interest<b><u> in making the project take longer '
+                'than necessary to deliver it with quality.',
           ),
         ],
       ),
@@ -693,11 +486,11 @@ class WorkingWithMeAdvantages extends StatelessWidget {
 
 class WorkingWithMeAdvantagesTile extends StatefulWidget {
   final Duration animationDelay;
-  final List<TextSpanBuilder> textSpans;
+  final String text;
 
   const WorkingWithMeAdvantagesTile({
     super.key,
-    required this.textSpans,
+    required this.text,
     required this.animationDelay,
   });
 
@@ -749,12 +542,9 @@ class _WorkingWithMeAdvantagesTileState
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(top: 10),
-            child: RichText(
-              text: TextSpan(
-                children: widget.textSpans.map((e) {
-                  return e(defaultStyle);
-                }).toList(),
-              ),
+            child: BabelSelectableText(
+              widget.text,
+              style: defaultStyle,
             ),
           ),
         ),

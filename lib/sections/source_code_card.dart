@@ -1,3 +1,4 @@
+import 'package:babel_text/babel_text.dart';
 import 'package:flutter/material.dart';
 import 'package:igorcurriculum/services/analytics_service.dart';
 import 'package:igorcurriculum/shared/optimized_asset.dart';
@@ -58,26 +59,12 @@ class SourceCodeCard extends StatelessWidget {
                   color: Theme.of(context).colorScheme.onPrimary.withAlpha(190),
                   fontStyle: FontStyle.italic,
                 );
-                final List<TextSpan> spans = [
-                  TextSpan(
-                    text: 'I created',
-                    style: defaultStyle.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.scrim,
-                      decoration: TextDecoration.underline,
-                      fontSize: 15,
-                      fontStyle: FontStyle.normal,
-                    ),
-                  ),
-                  TextSpan(
-                    text: ' this site. Nothing was copied from anywhere. It\'s '
-                        'completely my own code, one hundred percent of the writed lines are mine. No templates where used.',
-                    style: defaultStyle,
-                  ),
-                ];
-
-                return RichText(
-                  text: TextSpan(children: spans),
+                return BabelSelectableText(
+                  '<b><u>I created<b><u> this site. Nothing was copied from '
+                  'anywhere. It is <b>completely my own code<b>, and '
+                  '<sC>every written line is mine<sC>. <soft>No templates were '
+                  'used.<soft>',
+                  style: defaultStyle,
                 );
               },
             );

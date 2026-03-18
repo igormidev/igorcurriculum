@@ -1,4 +1,6 @@
+import 'package:babel_text/babel_text.dart';
 import 'package:flutter/material.dart';
+import 'package:igorcurriculum/shared/babel_text_utils.dart';
 import 'package:igorcurriculum/shared/curriculum_section.dart';
 
 const skillsSectionData = CurriculumSectionData(
@@ -9,6 +11,37 @@ const skillsSectionData = CurriculumSectionData(
   description:
       'Deep Flutter expertise, production-grade Dart backend range, advanced AI workflow depth and architecture discipline for products that need to feel fast, stable and built to last.',
   buildChildren: _buildSkillsSectionChildren,
+);
+
+const _skillReferenceUrls = {
+  '<flutter>': 'https://docs.flutter.dev/',
+  '<serverpod>': 'https://docs.serverpod.dev/',
+  '<bloc>': 'https://bloclibrary.dev/',
+  '<riverpod>': 'https://riverpod.dev/',
+  '<flutterHooks>': 'https://pub.dev/packages/flutter_hooks',
+  '<goRouter>': 'https://pub.dev/packages/go_router',
+  '<autoRoute>': 'https://pub.dev/packages/auto_route',
+  '<flutterModular>': 'https://pub.dev/packages/flutter_modular',
+  '<devTools>': 'https://docs.flutter.dev/tools/devtools/overview',
+  '<postHog>': 'https://posthog.com/product-analytics',
+  '<firebaseAnalytics>': 'https://firebase.google.com/docs/analytics',
+  '<appsFlyer>': 'https://www.appsflyer.com/',
+  '<firebase>': 'https://firebase.google.com/',
+  '<grpc>': 'https://grpc.io/docs/languages/dart/quickstart/',
+  '<rowLevelSecurity>':
+      'https://supabase.com/docs/guides/database/postgres/row-level-security',
+  '<claudeCode>': 'https://code.claude.com/docs/en/overview',
+  '<mcp>': 'https://modelcontextprotocol.io/docs/getting-started/intro',
+  '<langChain>': 'https://docs.langchain.com/oss/python/langchain/overview',
+};
+
+final _skillLinkStyleMapping = buildLinkTextStyleMapping(
+  _skillReferenceUrls.keys,
+);
+final _skillLinkTapMapping = buildUrlTapMapping(_skillReferenceUrls);
+final _skillLinkTooltipMapping = buildLinkTooltipMapping(
+  _skillReferenceUrls.keys,
+  message: 'Open docs or package',
 );
 
 List<Widget> _buildSkillsSectionChildren(BuildContext context) => [
@@ -49,12 +82,20 @@ class _SkillsShowcase extends StatelessWidget {
                 ),
           ),
           const SizedBox(height: 10),
-          Text(
-            'I have been building with Flutter since the beta era, and I pair that foundation with strong backend, architecture and AI workflow depth. My main strength is not just knowing the popular packages or tools. It is understanding the tradeoffs behind each layer and turning that knowledge into software that feels mature in production.',
+          BabelSelectableText(
+            'I have been building with <flutter>Flutter<flutter> since the beta '
+            'era, and I pair that foundation with strong backend, architecture '
+            'and AI workflow depth. My main strength is not just knowing the '
+            'popular packages or tools. It is understanding the <b>tradeoffs '
+            'behind each layer<b> and turning that knowledge into software '
+            'that feels <sC>mature in production<sC>.',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: colorScheme.onSurface.withAlpha(230),
                   height: 1.45,
                 ),
+            styleMapping: _skillLinkStyleMapping,
+            onTapMapping: _skillLinkTapMapping,
+            onHoverTooltipMapping: _skillLinkTooltipMapping,
           ),
           const SizedBox(height: 16),
           const Wrap(
@@ -136,32 +177,39 @@ class _AiSystemsSpotlight extends StatelessWidget {
                 ),
           ),
           const SizedBox(height: 8),
-          Text(
-            'Claude Code is part of my daily toolkit, but the differentiator is not simply knowing prompts. It is knowing how to structure context, tools, agent roles and review loops so the system behaves like an organized engineering team instead of a single assistant window.',
+          BabelSelectableText(
+            '<claudeCode>Claude Code<claudeCode> is part of my daily toolkit, '
+            'but the differentiator is not simply knowing prompts. It is '
+            'knowing how to structure context, tools, <mcp>MCP<mcp> agent '
+            'roles and review loops so the system behaves like an organized '
+            'engineering team instead of a single assistant window.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurface.withAlpha(230),
                   height: 1.45,
                 ),
+            styleMapping: _skillLinkStyleMapping,
+            onTapMapping: _skillLinkTapMapping,
+            onHoverTooltipMapping: _skillLinkTooltipMapping,
           ),
           const SizedBox(height: 14),
           const _SkillBullet(
             text:
-                'I can split work across multiple agents in parallel, assign clear scopes and orchestrate how their outputs converge back into one coherent implementation.',
+                'I can split work across multiple agents in parallel, assign <b>clear scopes<b> and orchestrate how their outputs converge back into one coherent implementation.',
           ),
           const SizedBox(height: 10),
           const _SkillBullet(
             text:
-                'I design multi-step workflows where agents plan, execute, review and critique their own output, which raises both speed and reliability compared with one-shot prompting.',
+                'I design multi-step workflows where agents <b>plan, execute, review and critique<b> their own output, which raises both speed and reliability compared with one-shot prompting.',
           ),
           const SizedBox(height: 10),
           const _SkillBullet(
             text:
-                'I write project-specific Skill.md files from scratch, create MCP integrations and adapt the tooling layer to the client\'s stack so the assistant behaves like a specialized teammate.',
+                'I write project-specific <b>Skill.md files<b> from scratch, create <mcp>MCP<mcp> integrations and adapt the tooling layer to the client\'s stack so the assistant behaves like a specialized teammate.',
           ),
           const SizedBox(height: 10),
           const _SkillBullet(
             text:
-                'I am comfortable with LangChain, RAG pipelines, context engineering and AI-driven internal tooling, which lets me help with both AI-assisted delivery and AI-native product features.',
+                'I am comfortable with <langChain>LangChain<langChain>, <b>RAG pipelines<b>, context engineering and AI-driven internal tooling, which lets me help with both AI-assisted delivery and AI-native product features.',
           ),
         ],
       ),
@@ -276,12 +324,15 @@ class _SkillBullet extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         Expanded(
-          child: Text(
+          child: BabelSelectableText(
             text,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurface.withAlpha(230),
                   height: 1.45,
                 ),
+            styleMapping: _skillLinkStyleMapping,
+            onTapMapping: _skillLinkTapMapping,
+            onHoverTooltipMapping: _skillLinkTooltipMapping,
           ),
         ),
       ],
@@ -306,43 +357,43 @@ const _skillGroups = [
     overline: 'FLUTTER',
     title: 'Framework depth across the whole ecosystem',
     bullets: [
-      'I have deep hands-on experience with Flutter\'s evolution, which gives me strong intuition for framework internals, edge cases and production tradeoffs.',
-      'I can work comfortably with BLoC, Riverpod, GetX, MobX, Triple, Flutter Hooks and native framework primitives, choosing the right state model for the app instead of forcing a favorite.',
-      'I am equally comfortable with go_router, auto_route, flutter_modular and related navigation stacks, including deeplinks that behave like first-class production apps.',
+      'I have deep hands-on experience with <flutter>Flutter<flutter>\'s evolution, which gives me strong intuition for <b>framework internals<b>, edge cases and production tradeoffs.',
+      'I can work comfortably with <bloc>BLoC<bloc>, <riverpod>Riverpod<riverpod>, GetX, MobX, Triple, <flutterHooks>Flutter Hooks<flutterHooks> and native framework primitives, choosing the right state model for the app instead of forcing a favorite.',
+      'I am equally comfortable with <goRouter>go_router<goRouter>, <autoRoute>auto_route<autoRoute>, <flutterModular>flutter_modular<flutterModular> and related navigation stacks, including deeplinks that behave like <sC>first-class production apps<sC>.',
     ],
   ),
   _SkillGroupData(
     overline: 'PERFORMANCE',
     title: 'Smoothness, rendering and debugging discipline',
     bullets: [
-      'Performance is a standard, not a late optimization. I focus heavily on rebuild control, widget lifecycle discipline, render-pipeline efficiency and eliminating jank before users feel it.',
+      'Performance is a standard, not a late optimization. I focus heavily on <b>rebuild control<b>, widget lifecycle discipline, render-pipeline efficiency and eliminating jank before users feel it.',
       'My understanding of the element tree and render tree helps me ship apps that stay responsive under real usage instead of only looking good in happy-path demos.',
-      'I use DevTools and profiling intentionally to track down frame drops, memory issues and hard-to-see UI bottlenecks instead of guessing.',
+      'I use <devTools>DevTools<devTools> and profiling intentionally to track down frame drops, memory issues and hard-to-see UI bottlenecks instead of guessing.',
     ],
   ),
   _SkillGroupData(
     overline: 'PRODUCT',
     title: 'Real app concerns beyond the UI layer',
     bullets: [
-      'I integrate the growth and product tooling serious apps need, especially PostHog, Firebase Analytics and AppsFlyer.',
-      'I build offline-first, sync-heavy and realtime experiences when the product calls for resilience beyond a simple request / response flow.',
-      'I treat internationalization as a product feature, not an afterthought. ZenScrap is public evidence of shipping multilingual experiences.',
+      'I integrate the growth and product tooling serious apps need, especially <postHog>PostHog<postHog>, <firebaseAnalytics>Firebase Analytics<firebaseAnalytics> and <appsFlyer>AppsFlyer<appsFlyer>.',
+      'I build <b>offline-first<b>, sync-heavy and realtime experiences when the product calls for resilience beyond a simple request / response flow.',
+      'I treat internationalization as a product feature, not an afterthought. <sC>ZenScrap is public evidence<sC> of shipping multilingual experiences.',
     ],
   ),
   _SkillGroupData(
     overline: 'BACKEND',
     title: 'Dart backend range with a security mindset',
     bullets: [
-      'My backend experience covers Firebase, Supabase and Serverpod as well as shelf, Aqueduct, dart_frog and gRPC, so I can choose between speed, control and long-term maintainability.',
-      'I currently favor Serverpod the most and adopted it before 1.0, which gave me deep practical time in the stack.',
-      'I write strict Row Level Security with a least-privilege mindset, exposing only the minimum data each user actually needs.',
+      'My backend experience covers <firebase>Firebase<firebase>, Supabase and <serverpod>Serverpod<serverpod> as well as shelf, Aqueduct, dart_frog and <grpc>gRPC<grpc>, so I can choose between speed, control and long-term maintainability.',
+      'I currently favor <serverpod>Serverpod<serverpod> the most and adopted it before 1.0, which gave me deep practical time in the stack.',
+      'I write strict <rowLevelSecurity>Row Level Security<rowLevelSecurity> with a least-privilege mindset, exposing only the minimum data each user actually needs.',
     ],
   ),
   _SkillGroupData(
     overline: 'ARCHITECTURE',
     title: 'Codebases built to scale with teams',
     bullets: [
-      'I structure large projects with package-based monorepos, internal packages and modular boundaries that let features grow without creating chaos.',
+      'I structure large projects with <b>package-based monorepos<b>, internal packages and modular boundaries that let features grow without creating chaos.',
       'I use clean architecture where it creates real leverage, especially around critical domain logic and long-lived products.',
       'I care about standards that survive growth: focused test coverage for critical paths, pragmatic use of mocktail / mockito, reusable internal packages and custom lints that keep the codebase aligned over time.',
     ],

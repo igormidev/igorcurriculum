@@ -1,7 +1,8 @@
 import 'dart:math' as math;
 
-import 'package:flutter/gestures.dart';
+import 'package:babel_text/babel_text.dart';
 import 'package:flutter/material.dart';
+import 'package:igorcurriculum/shared/babel_text_utils.dart';
 import 'package:igorcurriculum/shared/optimized_asset.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -107,49 +108,24 @@ class _ProjectShowcaseCardState extends State<ProjectShowcaseCard> {
           ),
         ),
         const SizedBox(height: 4),
-        RichText(
-          text: TextSpan(
-            children: [
-              if (showShortDescription) ...[
-                TextSpan(
-                  text: widget.shortDescription,
-                  style: style,
-                ),
-                TextSpan(
-                  text: 'See more',
-                  style: style.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                    decoration: TextDecoration.underline,
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      setState(() {
-                        showShortDescription = false;
-                      });
-                    },
-                ),
-              ] else ...[
-                TextSpan(
-                  text: widget.description,
-                  style: style,
-                ),
-                TextSpan(
-                  text: 'See less',
-                  style: style.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                    decoration: TextDecoration.underline,
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      setState(() {
-                        showShortDescription = true;
-                      });
-                    },
-                ),
-              ],
-            ],
+        BabelSelectableText(
+          showShortDescription
+              ? '${widget.shortDescription.trimRight()}\n\n<toggle>See more<toggle>'
+              : '${widget.description.trimRight()}\n\n<toggle>See less<toggle>',
+          style: style,
+          styleMapping: {
+            ...buildLinkTextStyleMapping(const {'<toggle>'}),
+          },
+          onTapMapping: {
+            '<toggle>': (_) {
+              setState(() {
+                showShortDescription = !showShortDescription;
+              });
+            },
+          },
+          onHoverTooltipMapping: buildLinkTooltipMapping(
+            const {'<toggle>'},
+            message: 'Toggle full description',
           ),
         ),
         if (!showShortDescription && widget.expandedFooter != null) ...[

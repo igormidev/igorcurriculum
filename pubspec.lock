@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  babel_text:
+    dependency: "direct main"
+    description:
+      name: babel_text
+      sha256: "244a232265951f96943a305fdaff7c3a1a1e7bcd255bd2f0659e9aa3ddff6c0c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.2"
   boolean_selector:
     dependency: transitive
     description:
