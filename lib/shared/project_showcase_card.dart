@@ -28,6 +28,7 @@ class ProjectShowcaseCard extends StatefulWidget {
   final Size? size;
   final int cacheWidth;
   final int cacheHeight;
+  final Map<String, String> linkTags;
   final BoxFit fit;
   final List<ProjectShowcaseAction> actions;
   final Widget? expandedFooter;
@@ -42,6 +43,7 @@ class ProjectShowcaseCard extends StatefulWidget {
     required this.titleLinkUrl,
     required this.cacheWidth,
     required this.cacheHeight,
+    this.linkTags = const {},
     this.onTitleTap,
     this.fit = BoxFit.cover,
     this.actions = const [],
@@ -114,19 +116,27 @@ class _ProjectShowcaseCardState extends State<ProjectShowcaseCard> {
               : '${widget.description.trimRight()}\n\n<toggle>See less<toggle>',
           style: style,
           styleMapping: {
+            ...buildLinkTextStyleMapping(widget.linkTags.keys),
             ...buildLinkTextStyleMapping(const {'<toggle>'}),
           },
           onTapMapping: {
+            ...buildUrlTapMapping(widget.linkTags),
             '<toggle>': (_) {
               setState(() {
                 showShortDescription = !showShortDescription;
               });
             },
           },
-          onHoverTooltipMapping: buildLinkTooltipMapping(
-            const {'<toggle>'},
-            message: 'Toggle full description',
-          ),
+          onHoverTooltipMapping: {
+            ...buildLinkTooltipMapping(
+              widget.linkTags.keys,
+              message: 'Open docs or package',
+            ),
+            ...buildLinkTooltipMapping(
+              const {'<toggle>'},
+              message: 'Toggle full description',
+            ),
+          },
         ),
         if (!showShortDescription && widget.expandedFooter != null) ...[
           const SizedBox(height: 12),

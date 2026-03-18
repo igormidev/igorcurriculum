@@ -21,11 +21,11 @@ List<Widget> _buildPackagesSectionChildren(BuildContext context) => [
         shortDescription:
             '''💡 A highly customizable <b>rich text package<b> for Flutter that turns inline markers into <sC>styles<sC>, <sC>taps<sC>, <sC>widgets<sC> and <sC>tooltips<sC>.
 
-<soft>Use a simple string syntax<soft> to make text bold, clickable, selectable or enhanced with inline widgets without manually composing `TextSpan`s.  ''',
+<soft>Use a simple string syntax<soft> to make text bold, clickable, selectable or enhanced with inline widgets without manually composing `<textSpanDocs>TextSpan<textSpanDocs>` trees.  ''',
         description:
             '''💡 A highly customizable rich text package for Flutter focused on <b>dynamic text composition from a plain string<b>.
 
-With <b>BabelText<b> and its related widgets, you can:
+With <babelTextPkg><b>BabelText<b><babelTextPkg> and its related widgets, you can:
  ⦿ Map markers to text styles such as <sC>bold<sC>, <sC>italic<sC>, <sC>underline<sC> and themed colors
  ⦿ Attach callbacks to tappable text segments
  ⦿ Inject inline widgets in the middle of the text flow
@@ -33,7 +33,12 @@ With <b>BabelText<b> and its related widgets, you can:
  ⦿ Use selectable variants for copyable rich text
  ⦿ Reuse app-wide default mappings for styles, widgets and interactions
 
-<soft>It is a practical abstraction over manual `TextSpan` trees<soft> when you need interactive, expressive text with much less boilerplate.''',
+<soft>It is a practical abstraction over manual `<textSpanDocs>TextSpan<textSpanDocs>` trees<soft> when you need interactive, expressive text with much less boilerplate.''',
+        linkTags: {
+          '<babelTextPkg>': 'https://pub.dev/packages/babel_text',
+          '<textSpanDocs>':
+              'https://api.flutter.dev/flutter/painting/TextSpan-class.html',
+        },
         imageAssetName: 'art/tumbnails/packages/babel_text.png',
         size: Size(100, 100),
         cacheHeight: 200,
@@ -98,13 +103,16 @@ With <b>BabelText<b> and its related widgets, you can:
         titleLinkUrl: 'https://pub.dev/packages/enchanted_regex',
         onTitleTap: _logOpenedEnchantedRegexPackage,
         shortDescription:
-            '''💡 A package that enhances the Dart <b>RegExp API<b>, especially when working with <sC>named groups<sC>.
+            '''💡 A package that enhances the Dart <regExpDocs><b>RegExp API<b><regExpDocs>, especially when working with <sC>named groups<sC>.
 
 <soft>It fills gaps around more advanced group manipulation and helper utilities.<soft>  ''',
         description:
-            '''💡 A package that enhances the Dart <b>RegExp API<b>, especially when working with <sC>named groups<sC>.
+            '''💡 A package that enhances the Dart <regExpDocs><b>RegExp API<b><regExpDocs>, especially when working with <sC>named groups<sC>.
 
 <soft>Dart already has a solid regex foundation.<soft> This package was created to cover some more advanced needs, especially around better group handling and auxiliary operations that are useful in real parsing workflows.''',
+        linkTags: {
+          '<regExpDocs>': 'https://api.dart.dev/dart-core/RegExp-class.html',
+        },
         imageAssetName: 'art/tumbnails/packages/enchanted_regex.PNG',
         size: Size(100, 100),
         cacheHeight: 200,
@@ -144,7 +152,11 @@ With <b>BabelText<b> and its related widgets, you can:
         description:
             '''💡 A package for displaying <b>vertical YouTube Shorts<b>.
 
-You choose what shorts will be displayed by passing a list of Shorts URLs or a channel name. Under the hood, the package uses <b>youtube_explode_dart<b> to get YouTube video information and <b>media_kit<b> as the player for the videos.''',
+You choose what shorts will be displayed by passing a list of Shorts URLs or a channel name. Under the hood, the package uses <youtubeExplode><b>youtube_explode_dart<b><youtubeExplode> to get YouTube video information and <mediaKit><b>media_kit<b><mediaKit> as the player for the videos.''',
+        linkTags: {
+          '<youtubeExplode>': 'https://pub.dev/packages/youtube_explode_dart',
+          '<mediaKit>': 'https://pub.dev/packages/media_kit',
+        },
         imageAssetName: 'art/tumbnails/packages/shorts.PNG',
         size: Size(110, 100),
         cacheHeight: 220,
@@ -159,11 +171,15 @@ You choose what shorts will be displayed by passing a list of Shorts URLs or a c
         shortDescription:
             '''💡 Autocomplete dialog in a text field for <b>desktop applications<b>.
 
-<soft>Flutter already has an autocomplete widget,<soft> but it does not match the expected UI pattern commonly seen on desktop and web.  ''',
+<soft>Flutter already has an <autocompleteWidget>autocomplete widget<autocompleteWidget>,<soft> but it does not match the expected UI pattern commonly seen on desktop and web.  ''',
         description:
             '''💡 Autocomplete dialog in a text field for desktop applications.
 
-<soft>Flutter already has an autocomplete widget,<soft> but the default experience does not match the expected UI pattern commonly seen on desktop and web. This package makes it possible to display an <b>overlay list of options right below the cursor indicator<b>, with each autocomplete option rendered as a list tile.''',
+<soft>Flutter already has an <autocompleteWidget>autocomplete widget<autocompleteWidget>,<soft> but the default experience does not match the expected UI pattern commonly seen on desktop and web. This package makes it possible to display an <b>overlay list of options right below the cursor indicator<b>, with each autocomplete option rendered as a list tile.''',
+        linkTags: {
+          '<autocompleteWidget>':
+              'https://api.flutter.dev/flutter/material/Autocomplete-class.html',
+        },
         size: Size(130, 100),
         actions: [
           ProjectShowcaseAction(
@@ -188,15 +204,19 @@ It helps you ship subscription or pricing UI quickly, including monthly and year
         description:
             '''💡 A pre-made pricing page component for Flutter focused on <b>fast setup of subscription and plan-selection screens<b>.
 
-With <b>PricingBackground<b>, <b>PricingPage<b> and <b>PricesModel<b>, you can:
+With <pricingPagePkg><b>PricingBackground<b><pricingPagePkg>, <pricingPagePkg><b>PricingPage<b><pricingPagePkg> and <pricingPagePkg><b>PricesModel<b><pricingPagePkg>, you can:
  ⦿ Define multiple pricing tiers with monthly and yearly prices
  ⦿ Get automatic loading-state handling for async CTA button actions
  ⦿ Use a responsive mobile layout with desktop side-by-side pricing cards
  ⦿ Choose between equal-height desktop cards or content-sized columns
  ⦿ Customize the decoration, typography and overall visual styling
- ⦿ Format feature strings with <sC>babel_text support<sC>
+ ⦿ Format feature strings with <babelTextPkg><sC>babel_text support<sC><babelTextPkg>
 
 <soft>It is a practical shortcut when you want a polished pricing experience quickly,<soft> while still keeping good control over the final UI.''',
+        linkTags: {
+          '<babelTextPkg>': 'https://pub.dev/packages/babel_text',
+          '<pricingPagePkg>': 'https://pub.dev/packages/pricing_page',
+        },
         size: Size(140, 100),
         fit: BoxFit.contain,
         actions: [

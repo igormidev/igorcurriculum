@@ -20,11 +20,11 @@ List<Widget> _buildSaasAttemptsSectionChildren(BuildContext context) => [
         titleLinkUrl: 'https://github.com/igormidev/zenscrap',
         onTitleTap: _logOpenedZenScrapRepository,
         shortDescription:
-            '''💡 An <b>AI-assisted web scraping SaaS<b> that takes a target URL and a plain-language extraction request, then turns it into a <sC>tested scraper<sC> and <sC>reusable API<sC>.
+            '''💡 <zenScrap><b>My SaaS ZenScrap<b><zenScrap> is an AI-assisted web scraping product that takes a target URL and a plain-language extraction request, then turns it into a <sC>tested scraper<sC> and <sC>reusable API<sC>.
 
 Its core pitch was not just creating scrapers quickly, but <soft>keeping them alive<soft> by monitoring failures and repairing broken extraction rules automatically.  ''',
         description:
-            '''💡 ZenScrap was built as a <b>production-oriented scraper platform<b>, not just a one-shot scraper generator.
+            '''💡 <zenScrap>ZenScrap<zenScrap> was built as a <b>production-oriented scraper platform<b>, not just a one-shot scraper generator.
 
 The workflow was intentionally simple:
  ⦿ Paste a target URL
@@ -33,7 +33,13 @@ The workflow was intentionally simple:
  ⦿ Expose the result as a callable API endpoint
  ⦿ Keep observing failures and <b>auto-fix<b> the scraper when the target site changes
 
-Under the hood, it was a larger multi-service Dart system with a <b>Serverpod backend<b>, a Flutter client, AI orchestration, ScrapingBee execution, analytics, billing flows and a <sC>self-healing loop<sC> as the main differentiator.''',
+Under the hood, it was a larger multi-service Dart system with a <serverpod><b>Serverpod backend<b><serverpod>, a <flutter>Flutter client<flutter>, AI orchestration, <scrapingBee>ScrapingBee<scrapingBee> execution, analytics, billing flows and a <sC>self-healing loop<sC> as the main differentiator.''',
+        linkTags: {
+          '<zenScrap>': 'https://www.zenscrap.com/',
+          '<serverpod>': 'https://docs.serverpod.dev/',
+          '<flutter>': 'https://docs.flutter.dev/',
+          '<scrapingBee>': 'https://www.scrapingbee.com/',
+        },
         imageAssetName: 'art/tumbnails/saas/zenscrap.png',
         size: Size(190, 120),
         fit: BoxFit.contain,
@@ -59,11 +65,11 @@ Under the hood, it was a larger multi-service Dart system with a <b>Serverpod ba
         titleLinkUrl: 'https://github.com/igormidev/mustachehub',
         onTitleTap: _logOpenedMustacheHubRepository,
         shortDescription:
-            '''💡 A template-authoring SaaS for building <b>structured Mustache templates<b> with reusable variables, saved collections, shareable URLs and generated final text.
+            '''💡 A template-authoring SaaS for building <mustache><b>structured Mustache templates<b><mustache> with reusable variables, saved collections, shareable URLs and generated final text.
 
 It was designed for a <soft>pre-LLM workflow<soft> where you define the schema once, save the template online, and later fill a generated form to produce polished text on demand.  ''',
         description:
-            '''💡 Mustache Hub was a complete <b>Flutter + Firebase<b> product for creating, hosting and filling <sC>logic-less text templates<sC>.
+            '''💡 Mustache Hub was a complete <flutter><b>Flutter<b><flutter> + <firebase><b>Firebase<b><firebase> product for creating, hosting and filling <mustache><sC>logic-less text templates<sC><mustache>.
 
 The product covered the full workflow:
  ⦿ Define text, choice, boolean and nested model variables
@@ -73,6 +79,11 @@ The product covered the full workflow:
  ⦿ Fill the generated form and get the final rendered output immediately
 
 It also included authentication, collection management, profile/account features, responsive dashboard flows and a <soft>custom editor-oriented architecture<soft> around template metadata and live generation.''',
+        linkTags: {
+          '<mustache>': 'https://mustache.github.io/mustache.5.html',
+          '<flutter>': 'https://docs.flutter.dev/',
+          '<firebase>': 'https://firebase.google.com/',
+        },
         expandedFooter: _ArchivedSaasNotice(),
         imageAssetName: 'art/tumbnails/saas/mustache_hub.png',
         size: Size(190, 120),

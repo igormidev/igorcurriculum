@@ -18,21 +18,39 @@ const _skillReferenceUrls = {
   '<serverpod>': 'https://docs.serverpod.dev/',
   '<bloc>': 'https://bloclibrary.dev/',
   '<riverpod>': 'https://riverpod.dev/',
+  '<getX>': 'https://pub.dev/packages/get',
+  '<mobX>': 'https://pub.dev/packages/mobx',
+  '<triple>': 'https://pub.dev/packages/flutter_triple',
   '<flutterHooks>': 'https://pub.dev/packages/flutter_hooks',
   '<goRouter>': 'https://pub.dev/packages/go_router',
   '<autoRoute>': 'https://pub.dev/packages/auto_route',
   '<flutterModular>': 'https://pub.dev/packages/flutter_modular',
   '<devTools>': 'https://docs.flutter.dev/tools/devtools/overview',
+  '<elementTree>': 'https://docs.flutter.dev/resources/inside-flutter',
+  '<renderTree>': 'https://docs.flutter.dev/resources/inside-flutter',
+  '<deepLinks>': 'https://docs.flutter.dev/ui/navigation/deep-linking',
   '<postHog>': 'https://posthog.com/product-analytics',
   '<firebaseAnalytics>': 'https://firebase.google.com/docs/analytics',
   '<appsFlyer>': 'https://www.appsflyer.com/',
   '<firebase>': 'https://firebase.google.com/',
+  '<supabase>': 'https://supabase.com/docs',
+  '<shelf>': 'https://pub.dev/packages/shelf',
+  '<aqueduct>': 'https://pub.dev/packages/aqueduct',
+  '<dartFrog>': 'https://pub.dev/packages/dart_frog',
   '<grpc>': 'https://grpc.io/docs/languages/dart/quickstart/',
   '<rowLevelSecurity>':
       'https://supabase.com/docs/guides/database/postgres/row-level-security',
+  '<offlineFirst>':
+      'https://docs.flutter.dev/app-architecture/design-patterns/offline-first',
+  '<internationalization>': 'https://docs.flutter.dev/ui/internationalization',
+  '<workspaces>': 'https://dart.dev/tools/pub/workspaces',
+  '<mocktail>': 'https://pub.dev/packages/mocktail',
+  '<mockito>': 'https://pub.dev/packages/mockito',
   '<claudeCode>': 'https://code.claude.com/docs/en/overview',
   '<mcp>': 'https://modelcontextprotocol.io/docs/getting-started/intro',
   '<langChain>': 'https://docs.langchain.com/oss/python/langchain/overview',
+  '<rag>': 'https://docs.langchain.com/oss/python/langchain/rag',
+  '<zenScrap>': 'https://www.zenscrap.com/',
 };
 
 final _skillLinkStyleMapping = buildLinkTextStyleMapping(
@@ -209,7 +227,7 @@ class _AiSystemsSpotlight extends StatelessWidget {
           const SizedBox(height: 10),
           const _SkillBullet(
             text:
-                'I am comfortable with <langChain>LangChain<langChain>, <b>RAG pipelines<b>, context engineering and AI-driven internal tooling, which lets me help with both AI-assisted delivery and AI-native product features.',
+                'I am comfortable with <langChain>LangChain<langChain>, <rag><b>RAG pipelines<b><rag>, context engineering and AI-driven internal tooling, which lets me help with both AI-assisted delivery and AI-native product features.',
           ),
         ],
       ),
@@ -358,8 +376,8 @@ const _skillGroups = [
     title: 'Framework depth across the whole ecosystem',
     bullets: [
       'I have deep hands-on experience with <flutter>Flutter<flutter>\'s evolution, which gives me strong intuition for <b>framework internals<b>, edge cases and production tradeoffs.',
-      'I can work comfortably with <bloc>BLoC<bloc>, <riverpod>Riverpod<riverpod>, GetX, MobX, Triple, <flutterHooks>Flutter Hooks<flutterHooks> and native framework primitives, choosing the right state model for the app instead of forcing a favorite.',
-      'I am equally comfortable with <goRouter>go_router<goRouter>, <autoRoute>auto_route<autoRoute>, <flutterModular>flutter_modular<flutterModular> and related navigation stacks, including deeplinks that behave like <sC>first-class production apps<sC>.',
+      'I can work comfortably with <bloc>BLoC<bloc>, <riverpod>Riverpod<riverpod>, <getX>GetX<getX>, <mobX>MobX<mobX>, <triple>Triple<triple>, <flutterHooks>Flutter Hooks<flutterHooks> and native framework primitives, choosing the right state model for the app instead of forcing a favorite.',
+      'I am equally comfortable with <goRouter>go_router<goRouter>, <autoRoute>auto_route<autoRoute>, <flutterModular>flutter_modular<flutterModular> and related navigation stacks, including <deepLinks>deep links<deepLinks> that behave like <sC>first-class production apps<sC>.',
     ],
   ),
   _SkillGroupData(
@@ -367,7 +385,7 @@ const _skillGroups = [
     title: 'Smoothness, rendering and debugging discipline',
     bullets: [
       'Performance is a standard, not a late optimization. I focus heavily on <b>rebuild control<b>, widget lifecycle discipline, render-pipeline efficiency and eliminating jank before users feel it.',
-      'My understanding of the element tree and render tree helps me ship apps that stay responsive under real usage instead of only looking good in happy-path demos.',
+      'My understanding of the <elementTree>element tree<elementTree> and <renderTree>render tree<renderTree> helps me ship apps that stay responsive under real usage instead of only looking good in happy-path demos.',
       'I use <devTools>DevTools<devTools> and profiling intentionally to track down frame drops, memory issues and hard-to-see UI bottlenecks instead of guessing.',
     ],
   ),
@@ -376,15 +394,15 @@ const _skillGroups = [
     title: 'Real app concerns beyond the UI layer',
     bullets: [
       'I integrate the growth and product tooling serious apps need, especially <postHog>PostHog<postHog>, <firebaseAnalytics>Firebase Analytics<firebaseAnalytics> and <appsFlyer>AppsFlyer<appsFlyer>.',
-      'I build <b>offline-first<b>, sync-heavy and realtime experiences when the product calls for resilience beyond a simple request / response flow.',
-      'I treat internationalization as a product feature, not an afterthought. <sC>ZenScrap is public evidence<sC> of shipping multilingual experiences.',
+      'I build <offlineFirst><b>offline-first<b><offlineFirst>, sync-heavy and realtime experiences when the product calls for resilience beyond a simple request / response flow.',
+      'I treat <internationalization>internationalization<internationalization> as a product feature, not an afterthought. <zenScrap><sC>My SaaS ZenScrap<zenScrap><sC> is public evidence of shipping multilingual experiences.',
     ],
   ),
   _SkillGroupData(
     overline: 'BACKEND',
     title: 'Dart backend range with a security mindset',
     bullets: [
-      'My backend experience covers <firebase>Firebase<firebase>, Supabase and <serverpod>Serverpod<serverpod> as well as shelf, Aqueduct, dart_frog and <grpc>gRPC<grpc>, so I can choose between speed, control and long-term maintainability.',
+      'My backend experience covers <firebase>Firebase<firebase>, <supabase>Supabase<supabase> and <serverpod>Serverpod<serverpod> as well as <shelf>shelf<shelf>, <aqueduct>Aqueduct<aqueduct>, <dartFrog>dart_frog<dartFrog> and <grpc>gRPC<grpc>, so I can choose between speed, control and long-term maintainability.',
       'I currently favor <serverpod>Serverpod<serverpod> the most and adopted it before 1.0, which gave me deep practical time in the stack.',
       'I write strict <rowLevelSecurity>Row Level Security<rowLevelSecurity> with a least-privilege mindset, exposing only the minimum data each user actually needs.',
     ],
@@ -393,9 +411,9 @@ const _skillGroups = [
     overline: 'ARCHITECTURE',
     title: 'Codebases built to scale with teams',
     bullets: [
-      'I structure large projects with <b>package-based monorepos<b>, internal packages and modular boundaries that let features grow without creating chaos.',
+      'I structure large projects with <workspaces><b>package-based monorepos<b><workspaces>, internal packages and modular boundaries that let features grow without creating chaos.',
       'I use clean architecture where it creates real leverage, especially around critical domain logic and long-lived products.',
-      'I care about standards that survive growth: focused test coverage for critical paths, pragmatic use of mocktail / mockito, reusable internal packages and custom lints that keep the codebase aligned over time.',
+      'I care about standards that survive growth: focused test coverage for critical paths, pragmatic use of <mocktail>mocktail<mocktail> / <mockito>mockito<mockito>, reusable internal packages and custom lints that keep the codebase aligned over time.',
     ],
   ),
 ];
