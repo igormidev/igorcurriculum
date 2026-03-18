@@ -8,8 +8,8 @@ const skillsSectionData = CurriculumSectionData(
   title: 'Technical edge',
   tabLabel: 'Tecnical Edge',
   subtitle: 'What sets my work apart',
-  description:
-      'Deep Flutter expertise, production-grade Dart backend range, advanced AI workflow depth and architecture discipline for products that need to feel fast, stable and built to last.',
+  description: null,
+  // 'Deep Flutter expertise, production-grade Dart backend range, advanced AI workflow depth and architecture discipline for products that need to feel fast, stable and built to last.',
   buildChildren: _buildSkillsSectionChildren,
 );
 
@@ -73,88 +73,63 @@ class _SkillsShowcase extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: colorScheme.outlineVariant.withAlpha(130),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        BabelSelectableText(
+          'I have been building with <flutter>Flutter<flutter> since the beta '
+          'era, and I pair that foundation with strong backend, architecture '
+          'and AI workflow depth. My main strength is not just knowing the '
+          'popular packages or tools. It is understanding the <b>tradeoffs '
+          'behind each layer<b> and turning that knowledge into software '
+          'that feels <sC>mature in production<sC>.',
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: colorScheme.onSurface.withAlpha(230),
+                height: 1.45,
+              ),
+          styleMapping: _skillLinkStyleMapping,
+          onTapMapping: _skillLinkTapMapping,
+          onHoverTooltipMapping: _skillLinkTooltipMapping,
         ),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            colorScheme.primaryContainer.withAlpha(180),
-            colorScheme.surfaceContainerHighest.withAlpha(110),
+        const SizedBox(height: 16),
+        const Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            _StrengthChip(label: 'Flutter since beta'),
+            _StrengthChip(label: 'Serverpod before 1.0'),
+            _StrengthChip(label: 'Performance-first mindset'),
+            _StrengthChip(label: 'Offline / sync / realtime'),
+            _StrengthChip(label: 'Security-minded backend'),
+            _StrengthChip(label: 'Claude Code power user'),
+            _StrengthChip(label: 'MCP / agent orchestration'),
           ],
         ),
-      ),
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'I am strongest where polished product execution meets engineering depth.',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  height: 1.15,
-                ),
-          ),
-          const SizedBox(height: 10),
-          BabelSelectableText(
-            'I have been building with <flutter>Flutter<flutter> since the beta '
-            'era, and I pair that foundation with strong backend, architecture '
-            'and AI workflow depth. My main strength is not just knowing the '
-            'popular packages or tools. It is understanding the <b>tradeoffs '
-            'behind each layer<b> and turning that knowledge into software '
-            'that feels <sC>mature in production<sC>.',
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: colorScheme.onSurface.withAlpha(230),
-                  height: 1.45,
-                ),
-            styleMapping: _skillLinkStyleMapping,
-            onTapMapping: _skillLinkTapMapping,
-            onHoverTooltipMapping: _skillLinkTooltipMapping,
-          ),
-          const SizedBox(height: 16),
-          const Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              _StrengthChip(label: 'Flutter since beta'),
-              _StrengthChip(label: 'Serverpod before 1.0'),
-              _StrengthChip(label: 'Performance-first mindset'),
-              _StrengthChip(label: 'Offline / sync / realtime'),
-              _StrengthChip(label: 'Security-minded backend'),
-              _StrengthChip(label: 'Claude Code power user'),
-              _StrengthChip(label: 'MCP / agent orchestration'),
-            ],
-          ),
-          const SizedBox(height: 18),
-          const _AiSystemsSpotlight(),
-          const SizedBox(height: 24),
-          LayoutBuilder(
-            builder: (context, constraints) {
-              const spacing = 20.0;
-              final useTwoColumns = constraints.maxWidth >= 540;
-              final blockWidth = useTwoColumns
-                  ? (constraints.maxWidth - spacing) / 2
-                  : constraints.maxWidth;
+        const SizedBox(height: 24),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            const spacing = 20.0;
+            final useTwoColumns = constraints.maxWidth >= 540;
+            final blockWidth = useTwoColumns
+                ? (constraints.maxWidth - spacing) / 2
+                : constraints.maxWidth;
 
-              return Wrap(
-                spacing: spacing,
-                runSpacing: 20,
-                children: [
-                  for (final group in _skillGroups)
-                    SizedBox(
-                      width: blockWidth,
-                      child: _SkillGroup(group: group),
-                    ),
-                ],
-              );
-            },
-          ),
-        ],
-      ),
+            return Wrap(
+              spacing: spacing,
+              runSpacing: 20,
+              children: [
+                for (final group in _skillGroups)
+                  SizedBox(
+                    width: blockWidth,
+                    child: _SkillGroup(group: group),
+                  ),
+              ],
+            );
+          },
+        ),
+        const SizedBox(height: 18),
+        const _AiSystemsSpotlight(),
+      ],
     );
   }
 }
@@ -202,7 +177,8 @@ class _AiSystemsSpotlight extends StatelessWidget {
             'roles and review loops so the system behaves like an organized '
             'engineering team instead of a single assistant window.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurface.withAlpha(230),
+                  color: colorScheme.outline,
+                  fontWeight: FontWeight.w300,
                   height: 1.45,
                 ),
             styleMapping: _skillLinkStyleMapping,
@@ -395,7 +371,7 @@ const _skillGroups = [
     bullets: [
       'I integrate the growth and product tooling serious apps need, especially <postHog>PostHog<postHog>, <firebaseAnalytics>Firebase Analytics<firebaseAnalytics> and <appsFlyer>AppsFlyer<appsFlyer>.',
       'I build <offlineFirst><b>offline-first<b><offlineFirst>, sync-heavy and realtime experiences when the product calls for resilience beyond a simple request / response flow.',
-      'I treat <internationalization>internationalization<internationalization> as a product feature, not an afterthought. <zenScrap><sC>My SaaS ZenScrap<zenScrap><sC> is public evidence of shipping multilingual experiences.',
+      'I treat <internationalization>internationalization<internationalization> as a product feature, not an afterthought. My SaaS <zenScrap><sC>ZenScrap<zenScrap><sC> is public evidence of shipping multilingual experiences.',
     ],
   ),
   _SkillGroupData(
