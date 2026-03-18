@@ -6,6 +6,7 @@ import 'package:igorcurriculum/shared/curriculum_section.dart';
 const packagesSectionData = CurriculumSectionData(
   id: 'packages',
   title: 'My public packages',
+  tabLabel: 'Open Source',
   subtitle: 'Open source projects',
   description:
       'In my Flutter developer career I built and published several open source packages. Here are the strongest examples.',

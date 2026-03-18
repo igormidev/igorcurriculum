@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
 class SlidingTabSelector extends StatefulWidget {
@@ -7,6 +5,7 @@ class SlidingTabSelector extends StatefulWidget {
   final int selectedIndex;
   final ValueChanged<int> onSelected;
   final bool compact;
+  final bool allowScrollableOverflow;
 
   const SlidingTabSelector({
     super.key,
@@ -14,6 +13,7 @@ class SlidingTabSelector extends StatefulWidget {
     required this.selectedIndex,
     required this.onSelected,
     this.compact = false,
+    this.allowScrollableOverflow = true,
   });
 
   @override
@@ -56,11 +56,12 @@ class _SlidingTabSelectorState extends State<SlidingTabSelector> {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final useScrollableLayout = _shouldUseScrollableLayout(
-          context,
-          constraints.maxWidth,
-          buttonPadding.horizontal,
-        );
+        final useScrollableLayout = widget.allowScrollableOverflow &&
+            _shouldUseScrollableLayout(
+              context,
+              constraints.maxWidth,
+              buttonPadding.horizontal,
+            );
 
         WidgetsBinding.instance.addPostFrameCallback((_) {
           _updateSelectedRect(useScrollableLayout);
@@ -95,6 +96,7 @@ class _SlidingTabSelectorState extends State<SlidingTabSelector> {
                               index,
                               buttonPadding,
                               compact: widget.compact,
+                              expandToFill: false,
                             ),
                         ],
                       ),
@@ -115,6 +117,7 @@ class _SlidingTabSelectorState extends State<SlidingTabSelector> {
                               index,
                               buttonPadding,
                               compact: widget.compact,
+                              expandToFill: true,
                             ),
                           ),
                       ],
@@ -149,6 +152,7 @@ class _SlidingTabSelectorState extends State<SlidingTabSelector> {
     int index,
     EdgeInsets buttonPadding, {
     required bool compact,
+    required bool expandToFill,
   }) {
     final isSelected = index == widget.selectedIndex;
     final colorScheme = Theme.of(context).colorScheme;
@@ -159,22 +163,25 @@ class _SlidingTabSelectorState extends State<SlidingTabSelector> {
         key: _itemKeys[index],
         borderRadius: BorderRadius.circular(16),
         onTap: () => widget.onSelected(index),
-        child: Padding(
-          padding: buttonPadding,
-          child: Center(
-            child: Text(
-              widget.labels[index],
-              maxLines: 1,
-              overflow: TextOverflow.fade,
-              softWrap: false,
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    fontSize: compact ? 13 : 14,
-                    fontWeight: FontWeight.w700,
-                    color: isSelected
-                        ? colorScheme.onSurface
-                        : colorScheme.onSurfaceVariant,
-                    letterSpacing: 0.1,
-                  ),
+        child: SizedBox(
+          width: expandToFill ? double.infinity : null,
+          child: Padding(
+            padding: buttonPadding,
+            child: Center(
+              child: Text(
+                widget.labels[index],
+                maxLines: 1,
+                overflow: TextOverflow.fade,
+                softWrap: false,
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      fontSize: compact ? 13 : 14,
+                      fontWeight: FontWeight.w700,
+                      color: isSelected
+                          ? colorScheme.onSurface
+                          : colorScheme.onSurfaceVariant,
+                      letterSpacing: 0.1,
+                    ),
+              ),
             ),
           ),
         ),
@@ -194,11 +201,10 @@ class _SlidingTabSelectorState extends State<SlidingTabSelector> {
         );
 
     final totalWidth = widget.labels.fold<double>(
-          0,
-          (sum, label) =>
-              sum + _measureLabelWidth(label, textStyle) + horizontalPadding,
-        ) +
-        math.max(0, widget.labels.length - 1) * 6;
+      0,
+      (sum, label) =>
+          sum + _measureLabelWidth(label, textStyle) + horizontalPadding,
+    );
 
     return totalWidth > availableWidth - 12;
   }

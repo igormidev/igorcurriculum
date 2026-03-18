@@ -5,8 +5,8 @@ import 'package:igorcurriculum/sections/skills_section.dart';
 import 'package:igorcurriculum/shared/curriculum_section.dart';
 
 final curriculumSections = <CurriculumSectionData>[
-  skillsSectionData,
-  saasAttemptsSectionData,
   packagesSectionData,
+  saasAttemptsSectionData,
   experienceSectionData,
+  skillsSectionData,
 ];

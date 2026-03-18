@@ -6,6 +6,7 @@ import 'package:igorcurriculum/shared/curriculum_section.dart';
 const saasAttemptsSectionData = CurriculumSectionData(
   id: 'saas-attempts',
   title: 'SaaS attempts',
+  tabLabel: 'Saas Attempts',
   subtitle: 'Finished products',
   description:
       'I tried to create several SaaS products in the past. I only finished and published two of them. These are real, dense products that ran in production and are now open sourced as curriculum projects.',

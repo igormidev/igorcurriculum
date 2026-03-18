@@ -92,11 +92,9 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget _buildDesktopSectionsPane(BuildContext context) {
     return SizedBox.expand(
       key: _desktopViewportKey,
-      child: NotificationListener<ScrollNotification>(
+      child: NotificationListener<ScrollMetricsNotification>(
         onNotification: (notification) {
-          if (notification.depth == 0) {
-            _scheduleDesktopSectionSync();
-          }
+          _scheduleDesktopSectionSync();
           return false;
         },
         child: CustomScrollView(
@@ -115,43 +113,49 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: SlidingTabSelector(
                         labels: [
                           for (final section in curriculumSections)
-                            section.title,
+                            section.tabLabel,
                         ],
                         selectedIndex: _desktopSelectedSectionIndex,
                         onSelected: _scrollToDesktopSection,
+                        allowScrollableOverflow: false,
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-            SliverPadding(
-              padding: const EdgeInsets.only(top: 8),
-              sliver: SliverList.list(
-                children: [
-                  for (var index = 0;
-                      index < curriculumSections.length;
-                      index++)
-                    Padding(
-                      padding: EdgeInsets.only(
-                        bottom:
-                            index == curriculumSections.length - 1 ? 32 : 36,
-                      ),
-                      child: KeyedSubtree(
-                        key: _desktopSectionKeys[index],
-                        child: curriculumSections[index].build(context),
-                      ),
-                    ),
-                  const Divider(height: 32),
-                  const SourceCodeCard(),
-                  const SizedBox(height: 20),
-                ],
-              ),
-            ),
+            ..._buildDesktopSectionSlivers(context),
           ],
         ),
       ),
     );
+  }
+
+  List<Widget> _buildDesktopSectionSlivers(BuildContext context) {
+    return [
+      const SliverToBoxAdapter(
+        child: SizedBox(height: 8),
+      ),
+      for (var index = 0; index < curriculumSections.length; index++)
+        SliverToBoxAdapter(
+          child: Padding(
+            key: _desktopSectionKeys[index],
+            padding: EdgeInsets.only(
+              bottom: index == curriculumSections.length - 1 ? 32 : 36,
+            ),
+            child: curriculumSections[index].build(context),
+          ),
+        ),
+      const SliverToBoxAdapter(
+        child: Divider(height: 32),
+      ),
+      const SliverToBoxAdapter(
+        child: SourceCodeCard(),
+      ),
+      const SliverToBoxAdapter(
+        child: SizedBox(height: 20),
+      ),
+    ];
   }
 
   Widget _buildMobileLayout(BuildContext context) {
@@ -170,7 +174,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       for (final section in curriculumSections)
         _ProfileTabData(
-          label: section.title,
+          label: section.tabLabel,
           storageId: section.id,
           child: _buildTabScrollView(
             storageId: section.id,
@@ -339,12 +343,7 @@ class _ProfilePageState extends State<ProfilePage> {
       return;
     }
 
-    final targetContext = _desktopSectionKeys[index].currentContext;
-    if (targetContext == null) {
-      return;
-    }
-
-    final renderObject = targetContext.findRenderObject();
+    final renderObject = await _resolveDesktopSectionRenderObject(index);
     if (renderObject == null) {
       return;
     }
@@ -364,6 +363,21 @@ class _ProfilePageState extends State<ProfilePage> {
       duration: const Duration(milliseconds: 650),
       curve: Curves.easeInOutCubicEmphasized,
     );
+  }
+
+  Future<RenderObject?> _resolveDesktopSectionRenderObject(int index) async {
+    final currentRenderObject =
+        _desktopSectionKeys[index].currentContext?.findRenderObject();
+    if (currentRenderObject != null) {
+      return currentRenderObject;
+    }
+
+    await WidgetsBinding.instance.endOfFrame;
+    if (!mounted) {
+      return null;
+    }
+
+    return _desktopSectionKeys[index].currentContext?.findRenderObject();
   }
 }
 

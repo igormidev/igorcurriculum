@@ -4,6 +4,7 @@ import 'package:igorcurriculum/shared/curriculum_section.dart';
 const skillsSectionData = CurriculumSectionData(
   id: 'technical-edge',
   title: 'Technical edge',
+  tabLabel: 'Tecnical Edge',
   subtitle: 'What sets my work apart',
   description:
       'Deep Flutter expertise, production-grade Dart backend range, advanced AI workflow depth and architecture discipline for products that need to feel fast, stable and built to last.',

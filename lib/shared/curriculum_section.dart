@@ -7,6 +7,7 @@ typedef CurriculumSectionChildrenBuilder = List<Widget> Function(
 class CurriculumSectionData {
   final String id;
   final String title;
+  final String tabLabel;
   final String subtitle;
   final String description;
   final CurriculumSectionChildrenBuilder buildChildren;
@@ -14,6 +15,7 @@ class CurriculumSectionData {
   const CurriculumSectionData({
     required this.id,
     required this.title,
+    required this.tabLabel,
     required this.subtitle,
     required this.description,
     required this.buildChildren,

@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 const experienceSectionData = CurriculumSectionData(
   id: 'experience',
   title: 'Experience',
+  tabLabel: 'Experience',
   subtitle: 'Employment history',
   description:
       'My strongest professional work shipping Flutter products in production, from senior delivery to technical leadership.',
