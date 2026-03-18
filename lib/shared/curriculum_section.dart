@@ -9,7 +9,7 @@ class CurriculumSectionData {
   final String title;
   final String tabLabel;
   final String subtitle;
-  final String description;
+  final String? description;
   final CurriculumSectionChildrenBuilder buildChildren;
 
   const CurriculumSectionData({
@@ -51,15 +51,17 @@ class CurriculumSection extends StatelessWidget {
           subtitle: data.subtitle,
         ),
         const SizedBox(height: 10),
-        Text(
-          data.description,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: colorScheme.outline,
-                fontWeight: FontWeight.w300,
-                height: 1.45,
-              ),
-        ),
-        const SizedBox(height: 16),
+        if (data.description != null) ...[
+          Text(
+            data.description!,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: colorScheme.outline,
+                  fontWeight: FontWeight.w300,
+                  height: 1.45,
+                ),
+          ),
+          const SizedBox(height: 16),
+        ],
         ...children,
       ],
     );

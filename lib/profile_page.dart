@@ -140,15 +140,12 @@ class _ProfilePageState extends State<ProfilePage> {
         SliverToBoxAdapter(
           child: Padding(
             key: _desktopSectionKeys[index],
-            padding: EdgeInsets.only(
-              bottom: index == curriculumSections.length - 1 ? 32 : 36,
+            padding: const EdgeInsets.only(
+              bottom: 16,
             ),
             child: curriculumSections[index].build(context),
           ),
         ),
-      const SliverToBoxAdapter(
-        child: Divider(height: 32),
-      ),
       const SliverToBoxAdapter(
         child: SourceCodeCard(),
       ),
