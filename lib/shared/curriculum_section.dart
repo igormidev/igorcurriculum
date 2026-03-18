@@ -94,7 +94,7 @@ class SectionHeading extends StatelessWidget {
               ),
         ),
         Text(
-          '- $subtitle',
+          '• $subtitle',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w400,
                 color: colorScheme.outline,

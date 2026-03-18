@@ -53,6 +53,10 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               colorScheme: scheme,
               useMaterial3: true,
+              fontFamilyFallback: const [
+                'NotoEmoji',
+                'NotoSansSymbols2',
+              ],
             ),
             home: LayoutBuilder(
               builder: (context, constraints) {

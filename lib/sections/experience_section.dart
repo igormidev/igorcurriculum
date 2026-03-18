@@ -19,9 +19,9 @@ List<Widget> _buildExperienceSectionChildren(BuildContext context) => [
       const ExperienceTile(
         imageUrl: 'upwork.jpeg',
         title:
-            '<b>TOP RATED<b> Freelancer <soft>with<soft> <sC><b>100% Job Success rate<b><sC>',
+            '🥇 <b>TOP RATED<b> Freelancer <soft>with<soft> <sC><b>100% Job Success rate<b><sC>',
         description:
-            '''On this platform I built strong bonds with clients and helped them deliver real value to their users through my work.
+            '''💡 On this platform I built strong bonds with clients and helped them deliver real value to their users through my work.
 
 <pC><b>Meteoric rise<b><pC>
 With a lot of struggle and determination, I quickly went from being an amateur freelancer on the site to earning the <b>"talent in accession"<b> badge and later the <b>"top rated"<b> freelancer badge. This positioned me among the <sC>top 5% of freelancers<sC> on the platform.''',
@@ -34,21 +34,21 @@ With a lot of struggle and determination, I quickly went from being an amateur f
       const ExperienceTile(
         imageUrl: 'dsf.JPEG',
         title:
-            'Flutter Senior on an app with <b><sC>800 thousand users<sC><b>',
+            '📈 Flutter Senior on an app with <b><sC>800 thousand users<sC><b>',
         description:
-            '''Football social media that connects users with other users and clubs through selection partnerships.
+            '''⚽️ Football social media that connects users with other users and clubs through selection partnerships.
 
 <pC><b>Success app<b><pC> with more than <b>800 thousand downloads<b>.
 
 In this application, among other things, I delivered:
- - <b>Brazilian Pix payment integration<b>
- - <b>Feed performance improvements<b>
- - <b>Club selection queries<b>
- - <b>Complete UI/UX refactor for user posts<b>
- - <b>In-app banner implementation<b>
- - <b>User rank / badge system<b>
- - <b>Crowdfunding across app and web<b>
- - <b>YouTube Shorts channel integration<b>
+ • <b>Brazilian Pix payment integration<b>
+ • <b>Feed performance improvements<b>
+ • <b>Club selection queries<b>
+ • <b>Complete UI/UX refactor for user posts<b>
+ • <b>In-app banner implementation<b>
+ • <b>User rank / badge system<b>
+ • <b>Crowdfunding across app and web<b>
+ • <b>YouTube Shorts channel integration<b>
 
 <soft>I even created the<soft> <youtubeShorts>youtube_shorts<youtubeShorts> <soft>package to encapsulate this logic.<soft>''',
         workPeriodText: 'April 2023 - present',
@@ -66,11 +66,11 @@ In this application, among other things, I delivered:
         title:
             'Flutter Senior <soft>with crucial participation in a video streaming feature<soft>\non a health app',
         description:
-            '''Health plan organization tool with integration across health plan networks.
+            '''⚕️ Health plan organization tool with integration across health plan networks.
 
-In this freelance season of task-demand work, I contributed to deliveries involving health insurance.
+🏥 In this freelance season of task-demand work, I contributed to deliveries involving health insurance.
 
-I also implemented <b>video and chat features with health providers<b>.''',
+📹 I also implemented <b>video and chat features with health providers<b>.''',
         workPeriodText: 'April 2023 - December 2023',
         link:
             'https://play.google.com/store/apps/details?id=br.com.alineahealth.app&hl=pt&gl=US',
@@ -81,11 +81,11 @@ I also implemented <b>video and chat features with health providers<b>.''',
       const ExperienceTile(
         imageUrl: 'targetbank.jpeg',
         title: '<b>Tech lead<b> <soft>in a<soft> <sC>bank app<sC>',
-        description: '''A digital bank for truck drivers.
+        description: '''🏦 A digital bank for truck drivers.
 
-In this bank company I designed the application architecture around a codebase that was easy to <u>maintain<u>, <u>modify<u> and <u>scale<u>.
+🧱 In this bank company I designed the application architecture around a codebase that was easy to <u>maintain<u>, <u>modify<u> and <u>scale<u>.
 
-With that strong codebase, my team and I delivered high value by shipping apps that not only looked great, but also ran smoothly without bugs.''',
+💪 With that strong codebase, my team and I delivered high value by shipping apps that not only looked great, but also ran smoothly without bugs.''',
         workPeriodText: 'February 2022 - April 2023 (1 year 3 months)',
         link:
             'https://apps.apple.com/br/app/target-conta-digital/id1590916424?l=en',
@@ -97,11 +97,11 @@ With that strong codebase, my team and I delivered high value by shipping apps t
         imageUrl: 'targetfleetaccount.jpeg',
         title:
             '<b>Tech lead<b> <soft>in a<soft> <sC>fleet account / manager app<sC>',
-        description: '''A payment app for accredited gas stations.
+        description: '''⛽️ A payment app for accredited gas stations.
 
-Together with the team, we developed a banking payment solution for Target Bank's accredited gas stations.
+👥 Together with the team, we developed a banking payment solution for Target Bank's accredited gas stations.
 
-With a strong codebase, my team and I delivered high value by shipping apps that not only looked great, but also ran smoothly without bugs.''',
+💪 With a strong codebase, my team and I delivered high value by shipping apps that not only looked great, but also ran smoothly without bugs.''',
         workPeriodText: 'February 2022 - April 2023 (1 year 3 months)',
         link:
             'https://play.google.com/store/apps/details?id=br.com.targetmp.cartaofrota&hl=pt_BR&gl=US',

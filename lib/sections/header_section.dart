@@ -99,7 +99,7 @@ class _FiveStarWidgetState extends State<FiveStarWidget> {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Text(
-                ' | ',
+                ' • ',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 27,
@@ -340,7 +340,7 @@ class ProfileImage extends StatelessWidget {
                       );
                     },
                     child: Text(
-                      '- Upwork top rated freelancer with 100% success rate (best 5% of platform)',
+                      '✅ Upwork top rated freelancer with 100% success rate (best 5% of platform)',
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Theme.of(context).colorScheme.outline,
@@ -349,7 +349,7 @@ class ProfileImage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '- Client experience is my number 1 priority',
+                    '✅ Client experience is my number 1 priority',
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).colorScheme.outline,
