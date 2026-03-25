@@ -2,7 +2,7 @@ name: igorcurriculum
 description: "The online Curriculum of on the 5 percent best freelancers of Upwork. List of career achievements, employment history, open source projects and other abilities." 
 
 publish_to: 'none'  
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: '>=3.2.3 <4.0.0' 
