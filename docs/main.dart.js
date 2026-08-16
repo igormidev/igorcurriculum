@@ -84643,7 +84643,7 @@ s=A.vd(r,o,B.KE,!0)
 return new A.pH(A.kX(new A.aab()),"Igor Curriculum",s,p,r)},
 $S:510}
 A.aab.prototype={
-$2(a,b){$.ayh=b.b<=1200
+$2(a,b){$.ayh=b.b<=1250
 return B.Rl},
 $S:511}
 A.qc.prototype={
@@ -84764,11 +84764,11 @@ $1(a){this.a.RH()},
 $S:5}
 A.anY.prototype={
 $2(a,b){var s,r,q,p=this.a
-if(b.b>1200){s=A.fb(p.a42(a),null,610)
+if(b.b>1250){s=A.fb(p.a42(a),null,610)
 r=t.p
 q=A.b([B.at],r)
 B.b.L(q,p.LC(a,!1,8,!1,!1,!0))
-r=A.fx(A.b([s,A.fb(A.aB_(A.dg(q,B.a5,B.A,B.S),null,B.bh),null,610)],r),B.a5,B.tZ,B.S)
+r=A.fx(A.b([s,A.fb(A.aB_(A.dg(q,B.a5,B.A,B.S),null,B.bh),null,640)],r),B.a5,B.tZ,B.S)
 p=r}else p=A.aNU(p.a44(a),!0)
 return p},
 $S:513}

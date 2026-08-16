@@ -64,7 +64,7 @@ class _ProfilePageState extends State<ProfilePage> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         SizedBox(
-          width: Constants.screenWidth,
+          width: Constants.desktopSectionsWidth,
           child: _buildDesktopSectionsPane(context),
         ),
         SizedBox(
