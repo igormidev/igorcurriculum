@@ -20,7 +20,7 @@ dependencies:
   rename_app:
   cupertino_icons: ^1.0.2 
   dart_debouncer:  
-  babel_text: ^2.2.1
+  babel_text: ^2.2.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
