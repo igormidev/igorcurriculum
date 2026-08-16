@@ -3,9 +3,13 @@
 
 This repository contains the source code for my personal curriculum website, built with Flutter and published at [igorcurriculum.com](https://igorcurriculum.com).
 
-It is not just a static resume. It is a portfolio site that presents my work through four main lenses: public packages, professional experience, technical edge, and finished SaaS attempts. The goal is to show both what I have built and how I think about engineering, product quality, and delivery.
+It is not just a static resume. It is a portfolio site that presents my work through five main lenses: a published app, public packages, professional experience, technical edge, and finished SaaS attempts. The goal is to show both what I have built and how I think about engineering, product quality, and delivery.
 
 ## What this website covers
+
+### Published app
+
+The featured product is [Root Hub on Google Play](https://play.google.com/store/apps/details?id=com.root_hub_flutter) and the [Apple App Store](https://apps.apple.com/br/app/root-hub/id6759731801), a cross-platform community app for ROOT board-game players with approximately 60 monthly active users. It combines nearby table discovery, invite deep links, rich match chat, result reporting, faction-specific player ratings, and a grounded AI rules assistant. Its stack spans Flutter, Riverpod, Serverpod, PostgreSQL, Firebase Cloud Messaging, PostHog, Shorebird, OpenAI file search, a Jaspr redirect portal, and a custom lint package shared by the client and backend.
 
 ### My public packages
 This section highlights a selection of Dart and Flutter packages I published publicly, including:
@@ -91,6 +95,14 @@ To generate a production web build:
 ```bash
 flutter build web --release
 ```
+
+To generate the ATS-friendly illustrated PDF curriculum:
+
+```bash
+python3 tool/generate_curriculum_pdf.py
+```
+
+The PDF is written to `output/pdf/igor_miranda_dart_flutter_resume.pdf`.
 
 ## Links
 

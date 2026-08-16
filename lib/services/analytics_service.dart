@@ -29,6 +29,10 @@ class AnalyticsService {
     _logUniqueEvent('saas_repository_$saasName');
   }
 
+  void logOpenedPublishedAppStore(String appName, String platform) {
+    _logUniqueEvent('published_app_${appName}_$platform');
+  }
+
   void usedChangeColorFeature(String demoName) {
     _logUniqueEvent('change_color_$demoName');
   }
