@@ -3,6 +3,7 @@ import 'package:babel_text/babel_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:igorcurriculum/core/constants.dart';
 import 'package:igorcurriculum/shared/optimized_asset.dart';
 import 'package:igorcurriculum/theme_provider.dart';
 import 'package:lottie/lottie.dart';
@@ -72,7 +73,14 @@ class _ChangeLightModeWidgetState extends State<ChangeLightModeWidget>
 }
 
 class FiveStarWidget extends StatefulWidget {
-  const FiveStarWidget({super.key});
+  final bool showLeadingDot;
+  final double width;
+
+  const FiveStarWidget({
+    super.key,
+    this.showLeadingDot = true,
+    this.width = 200,
+  });
 
   @override
   State<FiveStarWidget> createState() => _FiveStarWidgetState();
@@ -98,16 +106,17 @@ class _FiveStarWidgetState extends State<FiveStarWidget> {
           return Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
-                ' • ',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 27,
+              if (widget.showLeadingDot)
+                const Text(
+                  ' • ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 27,
+                  ),
                 ),
-              ),
               Lottie.asset(
                 'art/five_star_animation.json',
-                width: 200,
+                width: widget.width,
                 fit: BoxFit.cover,
                 repeat: false,
               ),
@@ -125,6 +134,10 @@ class ProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Constants.isMobileSize) {
+      return const _MobileProfileHeader();
+    }
+
     const width = 180.0;
     return SizedBox(
       height: 260,
@@ -339,18 +352,19 @@ class ProfileImage extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Text(
-                      '✅ Upwork top rated freelancer with 100% success rate (best 5% of platform)',
-                      style: TextStyle(
+                    child: BabelText(
+                      '✅ Upwork top rated freelancer with <b>100%<b> '
+                      'success rate (best <b>5%<b> of platform)',
+                      style: GoogleFonts.inter(
                         fontWeight: FontWeight.w400,
                         color: Theme.of(context).colorScheme.outline,
                         fontSize: 14,
                       ),
                     ),
                   ),
-                  Text(
-                    '✅ Client experience is my number 1 priority',
-                    style: TextStyle(
+                  BabelText(
+                    '✅ Client experience is my number <b>1<b> priority',
+                    style: GoogleFonts.inter(
                       fontWeight: FontWeight.w400,
                       color: Theme.of(context).colorScheme.outline,
                       fontSize: 14,
@@ -367,6 +381,252 @@ class ProfileImage extends StatelessWidget {
 
   bool _removeBlackAndWhite(Color color) =>
       color != Colors.black && color != Colors.white;
+}
+
+class _MobileProfileHeader extends StatelessWidget {
+  static const double _identityHeight = 260;
+  static const double _controlsHeight = 136;
+
+  const _MobileProfileHeader();
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final photoWidth = (constraints.maxWidth * 0.46).clamp(132.0, 220.0);
+
+        return Column(
+          children: [
+            SizedBox(
+              height: _identityHeight,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(child: _buildIdentityCard(context)),
+                  const SizedBox(width: 12),
+                  _buildPhotoCard(context, photoWidth),
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
+            SizedBox(
+              height: _controlsHeight,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: _buildModeControl(context),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    flex: 9,
+                    child: _buildColorControl(context),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildIdentityCard(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest.withAlpha(100),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Igor miranda',
+            maxLines: 2,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              height: 1.05,
+            ),
+          ),
+          const SizedBox(
+            height: 38,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: FiveStarWidget(
+                showLeadingDot: false,
+                width: 138,
+              ),
+            ),
+          ),
+          const Divider(height: 14),
+          InkWell(
+            onTap: () {
+              launchUrl(
+                Uri.parse('https://www.upwork.com/freelancers/igormidev'),
+              );
+            },
+            child: BabelText(
+              '✅ Upwork top rated freelancer with <b>100%<b> success rate '
+              '(best <b>5%<b> of platform)',
+              style: GoogleFonts.inter(
+                fontWeight: FontWeight.w400,
+                color: colorScheme.outline,
+                fontSize: 12.5,
+                height: 1.25,
+              ),
+            ),
+          ),
+          const SizedBox(height: 5),
+          BabelText(
+            '✅ Client experience is my number <b>1<b> priority',
+            style: GoogleFonts.inter(
+              fontWeight: FontWeight.w400,
+              color: colorScheme.outline,
+              fontSize: 12.5,
+              height: 1.25,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPhotoCard(BuildContext context, double width) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      width: width,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHighest,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(180),
+          topRight: Radius.circular(180),
+          bottomLeft: Radius.circular(16),
+          bottomRight: Radius.circular(16),
+        ),
+      ),
+      child: Column(
+        children: [
+          Expanded(
+            child: OptimizedAsset(
+              assetName: 'art/me.PNG',
+              height: 220,
+              width: width,
+              fit: BoxFit.cover,
+              cacheHeight: 440,
+              cacheWidth: 440,
+            ),
+          ),
+          SizedBox(
+            height: 40,
+            child: Center(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: colorScheme.primary,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 2,
+                ),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Flutter Specialist',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.onPrimary,
+                        ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildModeControl(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isLight =
+        context.watch<ThemeProvider>().brightness == Brightness.light;
+
+    return _MobileThemeControl(
+      title: isLight ? 'Light mode' : 'Dark mode',
+      colorScheme: colorScheme,
+      child: const ChangeLightModeWidget(),
+    );
+  }
+
+  Widget _buildColorControl(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final colors = const <Color>[Colors.black, Colors.white]
+        .followedBy(Colors.primaries.reversed)
+        .followedBy(Colors.accents)
+        .where(
+          (color) => color != Colors.black && color != Colors.white,
+        )
+        .toList(growable: false);
+
+    return _MobileThemeControl(
+      title: 'Change theme',
+      colorScheme: colorScheme,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        child: GridView.extent(
+          shrinkWrap: true,
+          maxCrossAxisExtent: 20,
+          mainAxisSpacing: 3,
+          crossAxisSpacing: 3,
+          padding: EdgeInsets.zero,
+          physics: const NeverScrollableScrollPhysics(),
+          children: colors.map(ColorOption.fromColor).toList(growable: false),
+        ),
+      ),
+    );
+  }
+}
+
+class _MobileThemeControl extends StatelessWidget {
+  final String title;
+  final Widget child;
+  final ColorScheme colorScheme;
+
+  const _MobileThemeControl({
+    required this.title,
+    required this.child,
+    required this.colorScheme,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: ColoredBox(
+        color: colorScheme.surfaceContainerHighest.withAlpha(100),
+        child: Column(
+          children: [
+            ColoredBox(
+              color: colorScheme.surfaceContainerHighest,
+              child: SizedBox(
+                height: 36,
+                width: double.infinity,
+                child: Center(child: Text(title)),
+              ),
+            ),
+            Expanded(child: Center(child: child)),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class ColorOption extends StatelessWidget {

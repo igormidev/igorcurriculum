@@ -180,9 +180,11 @@ def _link(label: str, url: str) -> str:
 
 
 def _section_title(title: str) -> list:
+    rule = HRFlowable(width="100%", thickness=0.55, color=LINE, spaceAfter=4)
+    rule.keepWithNext = True
     return [
         Paragraph(escape(title.upper()), STYLES["section"]),
-        HRFlowable(width="100%", thickness=0.55, color=LINE, spaceAfter=4),
+        rule,
     ]
 
 
@@ -194,15 +196,15 @@ def _rich_bullet(html_text: str) -> Paragraph:
     return Paragraph(f"- {html_text}", STYLES["bullet"])
 
 
-def _experience_block(
+def _experience_flowables(
     title: str,
     context: str,
     period: str,
     links: list[tuple[str, str]],
     bullets: list[str],
-) -> KeepTogether:
+) -> list:
     link_html = " | ".join(_link(label, url) for label, url in links)
-    flowables = [
+    return [
         Paragraph(
             f"{escape(title)} | {escape(context)}",
             STYLES["subsection"],
@@ -212,7 +214,16 @@ def _experience_block(
         *[_bullet(item) for item in bullets],
         Spacer(1, 3),
     ]
-    return KeepTogether(flowables)
+
+
+def _experience_block(
+    title: str,
+    context: str,
+    period: str,
+    links: list[tuple[str, str]],
+    bullets: list[str],
+) -> KeepTogether:
+    return KeepTogether(_experience_flowables(title, context, period, links, bullets))
 
 
 def _linked_entry(title: str, url: str, description: str) -> Paragraph:
@@ -431,7 +442,7 @@ def _build_story() -> list:
         ),
         Paragraph(
             f"<b>Email:</b> {_link('igor-devwork@outlook.com', 'mailto:igor-devwork@outlook.com')}"
-            f" | <b>Portfolio:</b> {_link('igorcurriculum.com', 'https://igorcurriculum.com')}"
+            f" | <b>Portfolio Site:</b> {_link('igorcurriculum.com', 'https://igorcurriculum.com')}"
             f" | <b>GitHub:</b> {_link('github.com/igormidev', 'https://github.com/igormidev')}",
             STYLES["contact"],
         ),
@@ -517,16 +528,31 @@ def _build_story() -> list:
         _bullet(
             "Created a custom lint plugin and deterministic checker for Flutter component boundaries, file naming, localization, endpoint versioning, required language parameters, translated server responses, and client/server locale parity."
         ),
-        *_section_title("Professional experience"),
-        _experience_block(
-            "Freelance Senior Flutter Engineer",
-            "Upwork",
-            "March 2023 - Present",
-            [("Upwork profile", "https://www.upwork.com/freelancers/igormidev")],
+        *_section_title("Other founder-built products"),
+        _linked_entry(
+            "ZenScrap",
+            "https://github.com/igormidev/zenscrap",
+            "AI-assisted scraping SaaS that converted natural-language extraction requests into tested scrapers and reusable APIs, with Serverpod, Flutter, analytics, billing, and a self-healing repair loop.",
+        ),
+        _linked_entry(
+            "Mustache Hub",
+            "https://github.com/igormidev/mustachehub",
+            "Flutter and Firebase SaaS for structured Mustache templates, reusable variables, saved collections, shareable URLs, and live output generation.",
+        ),
+        KeepTogether(
             [
-                "Earned Top Rated status with 100% job success while delivering production Flutter work directly to clients.",
-                "Built long-term client relationships through product quality, clear communication, and pragmatic execution.",
-            ],
+                *_section_title("Professional experience"),
+                *_experience_flowables(
+                    "Freelance Senior Flutter Engineer",
+                    "Upwork",
+                    "March 2023 - Present",
+                    [("Upwork profile", "https://www.upwork.com/freelancers/igormidev")],
+                    [
+                        "Earned Top Rated status with 100% job success while delivering production Flutter work directly to clients.",
+                        "Built long-term client relationships through product quality, clear communication, and pragmatic execution.",
+                    ],
+                ),
+            ]
         ),
         _experience_block(
             "Senior Flutter Engineer",
@@ -612,17 +638,6 @@ def _build_story() -> list:
             "cursor_autocomplete_options",
             "https://pub.dev/packages/cursor_autocomplete_options",
             "Desktop and web autocomplete overlay aligned to the text cursor.",
-        ),
-        *_section_title("Other founder-built products"),
-        _linked_entry(
-            "ZenScrap",
-            "https://github.com/igormidev/zenscrap",
-            "AI-assisted scraping SaaS that converted natural-language extraction requests into tested scrapers and reusable APIs, with Serverpod, Flutter, analytics, billing, and a self-healing repair loop.",
-        ),
-        _linked_entry(
-            "Mustache Hub",
-            "https://github.com/igormidev/mustachehub",
-            "Flutter and Firebase SaaS for structured Mustache templates, reusable variables, saved collections, shareable URLs, and live output generation.",
         ),
         *_section_title("Technical differentiators"),
         _bullet(
