@@ -3,13 +3,30 @@
 
 This repository contains the source code for my personal curriculum website, built with Flutter and published at [igorcurriculum.com](https://igorcurriculum.com).
 
-It is not just a static resume. It is a portfolio site that presents my work through five main lenses: a published app, public packages, professional experience, technical edge, and finished SaaS attempts. The goal is to show both what I have built and how I think about engineering, product quality, and delivery.
+It is not just a static resume. It is a portfolio site that presents my work through published products, open-source creator tools, public packages, professional experience, technical edge, and finished SaaS attempts. The goal is to show both what I have built and how I think about engineering, product quality, and delivery.
 
 ## What this website covers
 
 ### Published app
 
 The featured product is [Root Hub on Google Play](https://play.google.com/store/apps/details?id=com.root_hub_flutter) and the [Apple App Store](https://apps.apple.com/br/app/root-hub/id6759731801), a cross-platform community app for ROOT board-game players with approximately 60 monthly active users. It combines nearby table discovery, invite deep links, rich match chat, result reporting, faction-specific player ratings, and a grounded AI rules assistant. Its stack spans Flutter, Riverpod, Serverpod, PostgreSQL, Firebase Cloud Messaging, PostHog, Shorebird, OpenAI file search, a Jaspr redirect portal, and a custom lint package shared by the client and backend.
+
+### Featured creator tool — Presscut Studio
+
+<a href="https://igormidev.github.io/presscut-studio/">
+  <img src="art/tumbnails/apps/presscut_studio.png" width="128" height="128" alt="Presscut Studio — newspaper cutouts, lettering and video">
+</a>
+
+[Presscut Studio](https://igormidev.github.io/presscut-studio/) is a free, open-source creative studio I built for my YouTube editing workflow. It turns images, text and video into editorial-style assets without recreating the same effects manually in a video editor.
+
+- **Images:** irregular newspaper cutouts, shadows, halftone dots, crumpled-paper texture, and hand, unfolding or torn-piece animations.
+- **Lettering:** magazine-style cutout text, typewriter and word reveals, changing letter styles, configurable timing and audio timing tools.
+- **Video:** taped frames, original sound, and extensions that hold the final frame, loop the clip or reverse it.
+- **Export:** transparent PNG images and alpha-channel MOV overlays for CapCut, with media processing kept inside the browser.
+
+The app uses React, TypeScript, canvas rendering and browser-side media encoding, with independent artboards and a responsive interface. It is hosted on GitHub Pages.
+
+[Open the studio](https://igormidev.github.io/presscut-studio/) · [Explore the source code](https://github.com/igormidev/presscut-studio)
 
 ### My public packages
 This section highlights a selection of Dart and Flutter packages I published publicly, including:

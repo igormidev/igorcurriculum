@@ -21,6 +21,10 @@ class AnalyticsService {
     _logUniqueEvent('demo_$demoName');
   }
 
+  void logOpenedProjectRepository(String projectName) {
+    _logUniqueEvent('project_repository_$projectName');
+  }
+
   void logOpenedSaasWebsite(String saasName) {
     _logUniqueEvent('saas_website_$saasName');
   }
